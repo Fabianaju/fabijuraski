@@ -9,17 +9,17 @@
   <style>
     /* ── TOKENS ─────────────────────────────── */
     :root {
-      --gold:       #c9934a;
-      --gold-lt:    #e8b96a;
-      --gold-dk:    #9a6a2a;
-      --petal:      #e8c4cc;
-      --petal-lt:   #f5e6ea;
-      --burgundy:   #6b1a2e;
-      --burg-dk:    #3d0a18;
-      --burg-lt:    #9b3050;
-      --cream:      #fdf8f3;
-      --ink:        #1a0e14;
-      --muted:      #7a5c66;
+      --gold:       #89CFF0;
+      --gold-lt:    #C9C4E8;
+      --gold-dk:    #3B3C88;
+      --petal:      #E8E5F7;
+      --petal-lt:   #F4F2FC;
+      --burgundy:   #3B3C88;
+      --burg-dk:    #2A2B6E;
+      --burg-lt:    #89CFF0;
+      --cream:      #F8F7FF;
+      --ink:        #1A1A3E;
+      --muted:      #7070A8;
       --white:      #ffffff;
 
       --ff-display: 'Cinzel Decorative', serif;
@@ -27,8 +27,8 @@
       --ff-body:    'Raleway', sans-serif;
       --ff-script:  'Great Vibes', cursive;
 
-      --shadow-gold: 0 8px 40px rgba(201,147,74,.25);
-      --shadow-burg: 0 8px 40px rgba(107,26,46,.3);
+      --shadow-pink: 0 8px 40px rgba(59,60,136,.2);
+      --shadow-lilac: 0 8px 40px rgba(59,60,136,.25);
     }
 
     /* ── RESET ──────────────────────────────── */
@@ -58,7 +58,7 @@
 
     /* ── PROMO STRIP ─────────────────────────── */
     .promo-strip {
-      background: linear-gradient(90deg, var(--burg-dk), var(--burgundy), var(--burg-dk));
+      background: linear-gradient(90deg, #3B3C88, #2A2B6E, #3B3C88);
       color: var(--gold-lt);
       text-align: center;
       font-family: var(--ff-body);
@@ -82,13 +82,13 @@
 
     /* ── HEADER ─────────────────────────────── */
     .topbar {
-      background: rgba(253,248,243,.97);
+      background: rgba(248,247,255,.97);
       backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 14px 48px;
-      border-bottom: 1px solid rgba(201,147,74,.2);
+      border-bottom: 1px solid rgba(59,60,136,.2);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -99,7 +99,7 @@
       color: var(--muted);
       letter-spacing: .5px;
     }
-    .topbar-welcome a { color: var(--burgundy); font-weight: 600; border-bottom: 1px solid rgba(107,26,46,.3); }
+    .topbar-welcome a { color: var(--burgundy); font-weight: 600; border-bottom: 1px solid rgba(59,60,136,.3); }
     .topbar-welcome a:hover { color: var(--gold-dk); }
 
     .logo-wrap { text-align: center; }
@@ -123,7 +123,7 @@
     .search-bar {
       display: flex;
       align-items: center;
-      border: 1px solid rgba(201,147,74,.4);
+      border: 1px solid rgba(59,60,136,.4);
       border-radius: 30px;
       overflow: hidden;
       background: rgba(255,255,255,.8);
@@ -143,7 +143,7 @@
       border: none;
       padding: 8px 14px;
       cursor: pointer;
-      color: #fff;
+      color: #ffffff;
       font-size: 13px;
       transition: opacity .2s;
     }
@@ -152,7 +152,7 @@
     .icon-btn {
       width: 36px; height: 36px;
       border-radius: 50%;
-      border: 1px solid rgba(201,147,74,.3);
+      border: 1px solid rgba(59,60,136,.4);
       background: transparent;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
@@ -177,14 +177,14 @@
       text-transform: uppercase;
       display: flex; align-items: center; gap: 7px;
       transition: all .2s;
-      box-shadow: 0 3px 14px rgba(107,26,46,.3);
+      box-shadow: 0 3px 14px rgba(59,60,136,.3);
     }
-    .cart-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 20px rgba(107,26,46,.4); }
+    .cart-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 20px rgba(59,60,136,.4); }
     .cart-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
 
     /* ── NAV ─────────────────────────────────── */
     nav {
-      background: linear-gradient(90deg, var(--burg-dk) 0%, var(--burgundy) 50%, var(--burg-dk) 100%);
+      background: linear-gradient(90deg, #3B3C88 0%, #2A2B6E 50%, #3B3C88 100%);
       display: flex;
       justify-content: center;
       gap: 0;
@@ -236,7 +236,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       overflow: hidden;
-      background: linear-gradient(135deg, var(--burg-dk) 0%, #2a0814 50%, #1a0810 100%);
+      background: linear-gradient(135deg, #EAE8F8 0%, #D8D4F4 30%, #C9C4E8 60%, #DCF0FB 100%);
     }
     /* Textured background pattern */
     .hero::before {
@@ -244,7 +244,7 @@
       position: absolute;
       inset: 0;
       background-image:
-        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(201,147,74,.08) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(59,60,136,.08) 0%, transparent 70%),
         url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9934a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       z-index: 0;
     }
@@ -254,7 +254,7 @@
       position: absolute;
       width: 600px; height: 600px;
       border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(201,147,74,.12) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(59,60,136,.12) 0%, transparent 70%);
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       z-index: 0;
@@ -283,7 +283,7 @@
       position: absolute;
       width: 220px; height: 340px;
       border-radius: 8px;
-      background: radial-gradient(ellipse, rgba(201,147,74,.35), transparent 70%);
+      background: radial-gradient(ellipse, rgba(59,60,136,.35), transparent 70%);
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       filter: blur(30px);
@@ -297,7 +297,7 @@
       box-shadow:
         -6px 0 20px rgba(0,0,0,.8),
         6px 6px 40px rgba(0,0,0,.6),
-        0 0 0 1px rgba(201,147,74,.2);
+        0 0 0 1px rgba(59,60,136,.2);
       animation: floatBook 4s ease-in-out infinite;
       cursor: pointer;
       transition: transform .3s;
@@ -336,7 +336,7 @@
       font-family: var(--ff-display);
       font-size: 9px;
       letter-spacing: 4px;
-      color: var(--gold);
+      color: #3B3C88;
       text-transform: uppercase;
       margin-bottom: 20px;
       display: flex;
@@ -350,27 +350,27 @@
       width: 30px;
       background: linear-gradient(90deg, transparent, var(--gold));
     }
-    .hero-eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
+    .hero-eyebrow::after { background: linear-gradient(90deg, #89CFF0, transparent); }
 
     .hero-title {
       font-family: var(--ff-serif);
       font-size: 58px;
       font-weight: 300;
-      color: var(--white);
+      color: #2A2B6E;
       line-height: 1.08;
       margin-bottom: 6px;
       letter-spacing: -1px;
     }
     .hero-title em {
       font-style: italic;
-      color: var(--gold-lt);
+      color: #3B3C88;
       font-weight: 300;
     }
     .hero-title .script-word {
       font-family: var(--ff-script);
       font-size: 80px;
       line-height: .9;
-      color: var(--gold-lt);
+      color: #89CFF0;
       display: block;
     }
 
@@ -378,7 +378,7 @@
       font-family: var(--ff-body);
       font-size: 12px;
       letter-spacing: 4px;
-      color: var(--petal);
+      color: #7070A8;
       text-transform: uppercase;
       margin-bottom: 28px;
       opacity: .8;
@@ -396,10 +396,10 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold));
     }
-    .hero-divider-line.right { background: linear-gradient(90deg, var(--gold), transparent); }
+    .hero-divider-line.right { background: linear-gradient(90deg, #89CFF0, transparent); }
 
     .hero-desc {
-      color: rgba(232,196,204,.75);
+      color: #5A5A9A;
       font-size: 14px;
       line-height: 1.9;
       margin-bottom: 32px;
@@ -409,9 +409,9 @@
 
     .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
     .tag {
-      background: rgba(201,147,74,.12);
-      color: var(--gold-lt);
-      border: 1px solid rgba(201,147,74,.3);
+      background: rgba(59,60,136,.1);
+      color: #3B3C88;
+      border: 1px solid rgba(59,60,136,.4);
       border-radius: 30px;
       font-size: 10px;
       font-weight: 500;
@@ -420,12 +420,12 @@
       text-transform: uppercase;
       transition: all .2s;
     }
-    .tag:hover { background: rgba(201,147,74,.25); border-color: var(--gold); }
+    .tag:hover { background: rgba(59,60,136,.25); border-color: var(--gold); }
 
     .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
     .btn-primary {
-      background: linear-gradient(135deg, var(--gold-lt), var(--gold), var(--gold-dk));
-      color: var(--burg-dk);
+      background: linear-gradient(135deg, #C9C4E8, #89CFF0, #3B3C88);
+      color: #fff;
       border: none;
       border-radius: 30px;
       padding: 14px 32px;
@@ -438,10 +438,10 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 4px 24px rgba(201,147,74,.4);
+      box-shadow: 0 4px 24px rgba(59,60,136,.4);
       transition: all .3s;
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,147,74,.5); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(59,60,136,.5); }
     .btn-outline {
       background: transparent;
       color: rgba(255,255,255,.8);
@@ -475,7 +475,7 @@
       font-family: var(--ff-serif);
       font-size: 42px;
       font-weight: 300;
-      color: var(--burgundy);
+      color: #2A2B6E;
       letter-spacing: -0.5px;
     }
     .section-title em {
@@ -497,7 +497,7 @@
       background: #fff;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 2px 20px rgba(107,26,46,.08);
+      box-shadow: 0 2px 20px rgba(59,60,136,.08);
       transition: all .35s cubic-bezier(.25,.8,.25,1);
       position: relative;
     }
@@ -507,14 +507,14 @@
       inset: 0;
       border-radius: 16px;
       border: 1px solid transparent;
-      background: linear-gradient(135deg, rgba(201,147,74,.3), transparent, rgba(107,26,46,.2)) border-box;
+      background: linear-gradient(135deg, rgba(59,60,136,.3), transparent, rgba(59,60,136,.2)) border-box;
       -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: destination-out;
       mask-composite: exclude;
       opacity: 0;
       transition: opacity .35s;
     }
-    .book-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(107,26,46,.18); }
+    .book-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(59,60,136,.18); }
     .book-card:hover::before { opacity: 1; }
 
     .book-img-wrap { position: relative; overflow: hidden; }
@@ -533,10 +533,10 @@
       overflow: hidden;
     }
     .book-placeholder.v2 {
-      background: linear-gradient(160deg, #d4afc0 0%, var(--burg-lt) 50%, var(--burg-dk) 100%);
+      background: linear-gradient(160deg, #C9C4E8 0%, #89CFF0 50%, #3B3C88 100%);
     }
     .book-placeholder.v3 {
-      background: linear-gradient(160deg, #e0c4a0 0%, #9a6a2a 50%, #2a1a08 100%);
+      background: linear-gradient(160deg, #D0D8F8 0%, #3B3C88 50%, #1A1A3E 100%);
     }
     .book-placeholder-text {
       font-family: var(--ff-serif);
@@ -569,16 +569,16 @@
     }
     .badge-soon {
       top: 14px; right: 14px;
-      background: rgba(107,26,46,.8);
-      color: var(--petal);
-      border: 1px solid rgba(201,147,74,.3);
+      background: rgba(59,60,136,.8);
+      color: #C9C4E8;
+      border: 1px solid rgba(59,60,136,.4);
       backdrop-filter: blur(4px);
     }
 
     .book-info { padding: 20px 22px 22px; }
     .book-genre {
       font-size: 9px;
-      color: var(--gold-dk);
+      color: #3B3C88;
       margin-bottom: 8px;
       font-weight: 600;
       letter-spacing: 2px;
@@ -593,7 +593,7 @@
       line-height: 1.3;
     }
     .book-price {
-      color: var(--gold-dk);
+      color: #3B3C88;
       font-weight: 700;
       font-size: 20px;
       font-family: var(--ff-serif);
@@ -618,9 +618,9 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: all .25s;
-      box-shadow: 0 3px 14px rgba(107,26,46,.25);
+      box-shadow: 0 3px 14px rgba(59,60,136,.25);
     }
-    .book-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(107,26,46,.4); }
+    .book-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(59,60,136,.4); }
     .book-btn.muted {
       background: linear-gradient(135deg, var(--muted), #5a4050);
     }
@@ -628,7 +628,7 @@
 
     /* ── QUOTE STRIP ──────────────────────────── */
     .quote-strip {
-      background: linear-gradient(135deg, var(--burg-dk), var(--burgundy));
+      background: linear-gradient(135deg, #E8E5F7, #DCF0FB, #E8E5F7);
       padding: 56px 20px;
       text-align: center;
       position: relative;
@@ -641,7 +641,7 @@
       transform: translateX(-50%);
       font-family: var(--ff-serif);
       font-size: 280px;
-      color: rgba(201,147,74,.06);
+      color: rgba(59,60,136,.06);
       line-height: 1;
       pointer-events: none;
     }
@@ -650,7 +650,7 @@
       font-size: 26px;
       font-style: italic;
       font-weight: 300;
-      color: var(--petal);
+      color: #2A2B6E;
       max-width: 680px;
       margin: 0 auto 20px;
       line-height: 1.6;
@@ -660,7 +660,7 @@
       font-family: var(--ff-display);
       font-size: 9px;
       letter-spacing: 3px;
-      color: var(--gold);
+      color: #7070A8;
       text-transform: uppercase;
     }
 
@@ -673,13 +673,13 @@
       gap: 72px;
       flex-wrap: wrap;
       position: relative;
-      background: linear-gradient(180deg, var(--cream) 0%, var(--petal-lt) 100%);
+      background: linear-gradient(180deg, #F8F7FF 0%, #E8E5F7 100%);
     }
     .author-section::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='40' fill='none' stroke='%23c9934a' stroke-width='.3' opacity='.2'/%3E%3Ccircle cx='60' cy='60' r='55' fill='none' stroke='%23c9934a' stroke-width='.2' opacity='.1'/%3E%3C/svg%3E") center/120px;
+      background: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='40' fill='none' stroke='%23e8629a' stroke-width='.3' opacity='.2'/%3E%3Ccircle cx='60' cy='60' r='55' fill='none' stroke='%23e8629a' stroke-width='.2' opacity='.1'/%3E%3C/svg%3E") center/120px;
       opacity: .4;
     }
 
@@ -690,7 +690,7 @@
     .author-photo-frame {
       width: 220px; height: 220px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-lt), var(--gold), var(--gold-dk));
+      background: linear-gradient(135deg, #C9C4E8, #89CFF0, #3B3C88);
       padding: 3px;
       position: relative;
     }
@@ -698,7 +698,7 @@
       width: 100%; height: 100%;
       border-radius: 50%;
       overflow: hidden;
-      background: linear-gradient(135deg, var(--petal), var(--burg-lt));
+      background: linear-gradient(135deg, #E8E5F7, #89CFF0);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -715,14 +715,14 @@
       position: absolute;
       inset: -10px;
       border-radius: 50%;
-      border: 1px solid rgba(201,147,74,.25);
+      border: 1px solid rgba(59,60,136,.25);
     }
     .author-photo-frame::after {
       content: '';
       position: absolute;
       inset: -22px;
       border-radius: 50%;
-      border: 1px dashed rgba(201,147,74,.15);
+      border: 1px dashed rgba(59,60,136,.15);
     }
 
     .author-text {
@@ -740,14 +740,14 @@
     .author-name {
       font-family: var(--ff-script);
       font-size: 56px;
-      color: var(--burgundy);
+      color: #3B3C88;
       line-height: 1;
       margin-bottom: 8px;
     }
     .author-title-line {
       width: 60px;
       height: 1px;
-      background: linear-gradient(90deg, var(--gold), transparent);
+      background: linear-gradient(90deg, #89CFF0, transparent);
       margin-bottom: 20px;
     }
     .author-desc {
@@ -764,26 +764,26 @@
     .social-link {
       width: 42px; height: 42px;
       border-radius: 50%;
-      border: 1px solid rgba(107,26,46,.2);
+      border: 1px solid rgba(59,60,136,.2);
       background: #fff;
       display: flex; align-items: center; justify-content: center;
       color: var(--burgundy);
       cursor: pointer;
       transition: all .25s;
-      box-shadow: 0 2px 10px rgba(107,26,46,.08);
+      box-shadow: 0 2px 10px rgba(59,60,136,.08);
     }
     .social-link:hover {
       background: linear-gradient(135deg, var(--burgundy), var(--burg-dk));
       border-color: var(--burgundy);
       color: var(--gold-lt);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(107,26,46,.3);
+      box-shadow: 0 6px 18px rgba(59,60,136,.3);
     }
     .social-link svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 
     /* ── TESTIMONIALS ─────────────────────────── */
     .testimonials-section {
-      background: linear-gradient(180deg, var(--petal-lt) 0%, var(--cream) 100%);
+      background: linear-gradient(180deg, #E8E5F7 0%, #F8F7FF 100%);
       padding: 0 20px 80px;
     }
     .testimonials-grid {
@@ -797,7 +797,7 @@
       background: #fff;
       border-radius: 16px;
       padding: 32px 28px;
-      box-shadow: 0 2px 16px rgba(107,26,46,.07);
+      box-shadow: 0 2px 16px rgba(59,60,136,.07);
       position: relative;
       transition: all .3s;
     }
@@ -807,10 +807,10 @@
       top: 16px; right: 24px;
       font-family: var(--ff-serif);
       font-size: 80px;
-      color: rgba(201,147,74,.12);
+      color: rgba(59,60,136,.12);
       line-height: 1;
     }
-    .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(107,26,46,.12); }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(59,60,136,.12); }
 
     .stars {
       display: flex; gap: 3px;
@@ -819,7 +819,7 @@
     .star-svg { width: 14px; height: 14px; }
     .testimonial-text {
       font-size: 14px;
-      color: #6a4a56;
+      color: #5A5A9A;
       line-height: 1.8;
       font-style: italic;
       font-family: var(--ff-serif);
@@ -836,13 +836,13 @@
     .testimonial-divider {
       width: 30px;
       height: 1px;
-      background: linear-gradient(90deg, var(--gold), transparent);
+      background: linear-gradient(90deg, #89CFF0, transparent);
       margin-bottom: 10px;
     }
 
     /* ── NEWSLETTER ───────────────────────────── */
     .newsletter {
-      background: linear-gradient(135deg, var(--burg-dk) 0%, #1a0810 50%, var(--burg-dk) 100%);
+      background: linear-gradient(135deg, #EAE8F8 0%, #D8EEF9 50%, #EAE8F8 100%);
       padding: 72px 20px;
       text-align: center;
       position: relative;
@@ -852,7 +852,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,147,74,.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(59,60,136,.08) 0%, transparent 70%);
     }
     .newsletter-content { position: relative; }
     .newsletter-icon { margin: 0 auto 20px; display: block; }
@@ -861,11 +861,11 @@
       font-size: 38px;
       font-weight: 300;
       font-style: italic;
-      color: var(--petal);
+      color: #2A2B6E;
       margin-bottom: 10px;
     }
     .newsletter p {
-      color: rgba(232,196,204,.6);
+      color: #7070A8;
       font-size: 13px;
       font-weight: 300;
       letter-spacing: .5px;
@@ -878,9 +878,9 @@
       gap: 0;
       border-radius: 40px;
       overflow: hidden;
-      border: 1px solid rgba(201,147,74,.3);
+      border: 1px solid rgba(59,60,136,.4);
       box-shadow: 0 8px 32px rgba(0,0,0,.3);
-      background: rgba(255,255,255,.06);
+      background: rgba(255,255,255,.85);
       backdrop-filter: blur(10px);
     }
     .newsletter-form input {
@@ -891,13 +891,13 @@
       font-size: 13px;
       font-family: var(--ff-body);
       outline: none;
-      color: #fff;
+      color: #1A1A3E;
       font-weight: 300;
     }
-    .newsletter-form input::placeholder { color: rgba(232,196,204,.4); }
+    .newsletter-form input::placeholder { color: rgba(59,60,136,.3); }
     .newsletter-form button {
-      background: linear-gradient(135deg, var(--gold-lt), var(--gold), var(--gold-dk));
-      color: var(--burg-dk);
+      background: linear-gradient(135deg, #C9C4E8, #89CFF0, #3B3C88);
+      color: #fff;
       border: none;
       padding: 15px 28px;
       font-family: var(--ff-body);
@@ -913,8 +913,8 @@
 
     /* ── FOOTER ───────────────────────────────── */
     footer {
-      background: var(--ink);
-      color: rgba(232,196,204,.6);
+      background: #0F0F2E;
+      color: #7070A8;
       padding: 60px 40px 28px;
     }
     .footer-grid {
@@ -927,13 +927,13 @@
     .footer-logo {
       font-family: var(--ff-script);
       font-size: 34px;
-      color: var(--petal);
+      color: #C9C4E8;
       margin-bottom: 14px;
     }
     .footer-brand p {
       font-size: 12px;
       line-height: 1.8;
-      color: rgba(232,196,204,.4);
+      color: rgba(201,196,232,.4);
       font-weight: 300;
       max-width: 260px;
     }
@@ -949,7 +949,7 @@
     .footer-col ul li { margin-bottom: 10px; }
     .footer-col ul li a {
       font-size: 12px;
-      color: rgba(232,196,204,.4);
+      color: rgba(201,196,232,.4);
       font-weight: 300;
       transition: color .2s;
     }
@@ -960,7 +960,7 @@
       border-top: 1px solid rgba(255,255,255,.05);
       padding-top: 24px;
       font-size: 11px;
-      color: rgba(232,196,204,.25);
+      color: rgba(201,196,232,.25);
       letter-spacing: .5px;
       font-weight: 300;
     }
@@ -970,7 +970,7 @@
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(26,14,20,.78);
+      background: rgba(15,15,46,.82);
       backdrop-filter: blur(8px);
       z-index: 9999;
       display: flex;
@@ -988,7 +988,7 @@
       width: 100%;
       max-width: 400px;
       position: relative;
-      box-shadow: 0 24px 80px rgba(107,26,46,.4);
+      box-shadow: 0 24px 80px rgba(59,60,136,.4);
       transform: translateY(28px);
       transition: transform .35s cubic-bezier(.25,.8,.25,1);
     }
@@ -1000,8 +1000,8 @@
       transition: color .2s;
     }
     .modal-close:hover { color: var(--burgundy); }
-    .modal-logo { text-align: center; font-family: var(--ff-script); font-size: 32px; color: var(--burgundy); margin-bottom: 4px; }
-    .modal-sub { text-align: center; font-family: var(--ff-display); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 28px; }
+    .modal-logo { text-align: center; font-family: var(--ff-script); font-size: 32px; color: #3B3C88; margin-bottom: 4px; }
+    .modal-sub { text-align: center; font-family: var(--ff-display); font-size: 8px; letter-spacing: 3px; color: #89CFF0; text-transform: uppercase; margin-bottom: 28px; }
     .btn-google {
       width: 100%;
       display: flex; align-items: center; justify-content: center; gap: 12px;
@@ -1029,16 +1029,16 @@
     .modal-field input:focus { border-color: var(--gold); }
     .btn-modal-submit {
       width: 100%;
-      background: linear-gradient(135deg, var(--burgundy), var(--burg-dk));
-      color: var(--gold-lt); border: none; border-radius: 30px;
+      background: linear-gradient(135deg, #3B3C88, #2A2B6E);
+      color: #fff; border: none; border-radius: 30px;
       padding: 13px; font-family: var(--ff-body); font-weight: 700;
       font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
       cursor: pointer; margin-top: 6px; transition: all .25s;
-      box-shadow: 0 4px 16px rgba(107,26,46,.3);
+      box-shadow: 0 4px 16px rgba(59,60,136,.3);
     }
     .btn-modal-submit:hover { opacity: .9; transform: translateY(-1px); }
     .modal-footer { text-align: center; font-size: 11px; color: var(--muted); margin-top: 18px; }
-    .modal-footer a { color: var(--burgundy); font-weight: 600; cursor: pointer; }
+    .modal-footer a { color: #3B3C88; font-weight: 600; cursor: pointer; }
 
     /* ── RESPONSIVE ───────────────────────────── */
     @media (max-width: 960px) {
@@ -1072,7 +1072,7 @@
 
 <!-- ── PROMO STRIP ──────────────────────────────── -->
 <div class="promo-strip">
-  ✦ Novo Lançamento ✦ &nbsp; "A Última Promessa do Verão" &nbsp; · &nbsp; Disponível na Amazon &nbsp; ✦
+  ✦ Novo Lançamento ✦ &nbsp; "O Escultor Invisível" &nbsp; · &nbsp; Neurociência · Budismo · Autoconhecimento &nbsp; · &nbsp; Disponível na Amazon &nbsp; ✦
 </div>
 
 <!-- ── HEADER ───────────────────────────────────── -->
@@ -1084,7 +1084,7 @@
 
   <div class="logo-wrap">
     <div class="logo-title">Fabiana Juraski</div>
-    <div class="logo-sub">Escritora · Romances Contemporâneos</div>
+    <div class="logo-sub">Escritora · Espiritualidade &amp; Desenvolvimento Pessoal</div>
   </div>
 
   <div class="topbar-right">
@@ -1107,9 +1107,9 @@
 <!-- ── NAV ──────────────────────────────────────── -->
 <nav>
   <a href="#" class="active">Livros</a>
-  <a href="#">Gêneros</a>
+  <a href="#">Espiritualidade</a>
   <a href="#">Sobre a Autora</a>
-  <a href="#">Séries</a>
+  <a href="#">Neurociência</a>
   <a href="#">Resenhas</a>
   <a href="#">Contato</a>
 </nav>
@@ -1120,60 +1120,59 @@
 
   <!-- SVG Petal decorations -->
   <svg class="petal-deco p1" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="30" cy="30" rx="10" ry="26" fill="rgba(201,147,74,0.2)" transform="rotate(-30 30 30)"/>
-    <ellipse cx="30" cy="30" rx="10" ry="26" fill="rgba(201,147,74,0.12)" transform="rotate(30 30 30)"/>
+    <ellipse cx="30" cy="30" rx="10" ry="26" fill="rgba(137,207,240,0.2)" transform="rotate(-30 30 30)"/>
+    <ellipse cx="30" cy="30" rx="10" ry="26" fill="rgba(59,60,136,0.12)" transform="rotate(30 30 30)"/>
   </svg>
   <svg class="petal-deco p2" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="25" cy="25" rx="8" ry="20" fill="rgba(232,196,204,0.2)" transform="rotate(20 25 25)"/>
-    <ellipse cx="25" cy="25" rx="8" ry="20" fill="rgba(232,196,204,0.12)" transform="rotate(-20 25 25)"/>
+    <ellipse cx="25" cy="25" rx="8" ry="20" fill="rgba(201,196,232,0.2)" transform="rotate(20 25 25)"/>
+    <ellipse cx="25" cy="25" rx="8" ry="20" fill="rgba(201,196,232,0.12)" transform="rotate(-20 25 25)"/>
   </svg>
   <svg class="petal-deco p3" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="22" cy="22" rx="7" ry="18" fill="rgba(201,147,74,0.18)" transform="rotate(45 22 22)"/>
+    <ellipse cx="22" cy="22" rx="7" ry="18" fill="rgba(59,60,136,0.18)" transform="rotate(45 22 22)"/>
   </svg>
 
   <div class="hero-left">
     <div class="book-stage">
-      <a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
-        <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/a%20ultima.jpg" alt="A Última Promessa do Verão – Fabiana Juraski" class="book-cover-img" />
+      <a href="https://www.amazon.com.br/Escultor-Invis%C3%ADvel-repeti%C3%A7%C3%A3o-reescrevem-silenciosamente-ebook/dp/B0H6KRWVKF/" target="_blank">
+        <img src="https://raw.githubusercontent.com/Fabianaju/escritorafabianajuraski/main/escultor" alt="O Escultor Invisível – Fabiana Juraski" class="book-cover-img" />
       </a>
     </div>
   </div>
 
   <div class="hero-right">
     <div class="hero-eyebrow">
-      Novo Lançamento
+      Novo Lançamento · eBook Kindle
     </div>
 
     <h1 class="hero-title">
-      A <em>Última</em><br>
-      <span class="script-word">Promessa</span>
-      de Verão
+      O <em>Escultor</em><br>
+      <span class="script-word">Invisível</span>
     </h1>
     <div class="hero-author">por Fabiana Juraski</div>
 
     <div class="hero-divider">
       <div class="hero-divider-line"></div>
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <path d="M9 1 L10.5 7 L16 7 L11.5 10.5 L13 16.5 L9 13 L5 16.5 L6.5 10.5 L2 7 L7.5 7 Z" fill="rgba(201,147,74,.5)"/>
+        <path d="M9 1 L10.5 7 L16 7 L11.5 10.5 L13 16.5 L9 13 L5 16.5 L6.5 10.5 L2 7 L7.5 7 Z" fill="rgba(59,60,136,.5)"/>
       </svg>
       <div class="hero-divider-line right"></div>
     </div>
 
     <p class="hero-desc">
-      Um verão que deveria ser esquecido. Uma promessa que mudaria tudo. 
-      Entre memórias e novos começos, dois corações descobrem que alguns laços 
-      são fortes demais para serem apagados pelo tempo.
+      Você é, agora mesmo, o escultor e a escultura. Cada pensamento repetido fortalece um circuito.
+      Cada hábito consolidado reescreve um mapa cortical. Neurociência de ponta e tradições 
+      contemplativas budistas revelam como transformar o que você repete em quem você está se tornando.
     </p>
 
     <div class="hero-tags">
-      <span class="tag">Romance Contemporâneo</span>
-      <span class="tag">Second Chance</span>
-      <span class="tag">Verão</span>
-      <span class="tag">Emotional</span>
+      <span class="tag">Neurociência</span>
+      <span class="tag">Budismo</span>
+      <span class="tag">Hábitos &amp; Mente</span>
+      <span class="tag">Desenvolvimento Pessoal</span>
     </div>
 
     <div class="hero-cta">
-      <a class="btn-primary" href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
+      <a class="btn-primary" href="https://www.amazon.com.br/Escultor-Invis%C3%ADvel-repeti%C3%A7%C3%A3o-reescrevem-silenciosamente-ebook/dp/B0H6KRWVKF/" target="_blank">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         Comprar na Amazon
       </a>
@@ -1185,18 +1184,18 @@
 <!-- ── DESTAQUES ─────────────────────────────────── -->
 <section style="background: var(--cream);">
   <div class="section-head">
-    <div class="section-eyebrow">Catálogo</div>
+    <div class="section-eyebrow">Catálogo de Obras</div>
     <h2 class="section-title">Livros & <em>Lançamentos</em></h2>
     <!-- Ornament SVG -->
     <svg class="section-ornament" width="140" height="20" viewBox="0 0 140 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="0" y1="10" x2="50" y2="10" stroke="url(#gl)" stroke-width="0.8"/>
-      <circle cx="70" cy="10" r="3" fill="#c9934a" opacity=".5"/>
-      <circle cx="60" cy="10" r="1.5" fill="#c9934a" opacity=".3"/>
-      <circle cx="80" cy="10" r="1.5" fill="#c9934a" opacity=".3"/>
+      <circle cx="70" cy="10" r="3" fill="#89CFF0" opacity=".5"/>
+      <circle cx="60" cy="10" r="1.5" fill="#89CFF0" opacity=".3"/>
+      <circle cx="80" cy="10" r="1.5" fill="#89CFF0" opacity=".3"/>
       <line x1="90" y1="10" x2="140" y2="10" stroke="url(#gr)" stroke-width="0.8"/>
       <defs>
-        <linearGradient id="gl" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#c9934a" stop-opacity="0"/><stop offset="100%" stop-color="#c9934a" stop-opacity=".5"/></linearGradient>
-        <linearGradient id="gr" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#c9934a" stop-opacity=".5"/><stop offset="100%" stop-color="#c9934a" stop-opacity="0"/></linearGradient>
+        <linearGradient id="gl" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#89CFF0" stop-opacity="0"/><stop offset="100%" stop-color="#89CFF0" stop-opacity=".5"/></linearGradient>
+        <linearGradient id="gr" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#89CFF0" stop-opacity=".5"/><stop offset="100%" stop-color="#89CFF0" stop-opacity="0"/></linearGradient>
       </defs>
     </svg>
   </div>
@@ -1204,50 +1203,43 @@
   <div class="container">
     <div class="book-grid">
 
-      <!-- Card 1 -->
+      <!-- Card 1 - O Escultor Invisível -->
       <div class="book-card">
         <div class="book-img-wrap">
-          <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/a%20ultima.jpg" alt="A Última Promessa do Verão" />
-          <span class="badge-pill badge-amazon">Amazon</span>
+          <img src="https://raw.githubusercontent.com/Fabianaju/escritorafabianajuraski/main/escultor" alt="O Escultor Invisível – Fabiana Juraski" />
+          <span class="badge-pill badge-amazon">Destaque</span>
         </div>
         <div class="book-info">
-          <div class="book-genre">Romance Contemporâneo · Second Chance</div>
-          <div class="book-name">A Última Promessa do Verão</div>
-          <div class="book-price">R$ 9,90</div>
-          <div class="book-installment">eBook Kindle disponível</div>
-          <a class="book-btn" href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
+          <div class="book-genre">Neurociência · Espiritualidade · Hábitos</div>
+          <div class="book-name">O Escultor Invisível</div>
+          <div class="book-price">eBook Kindle</div>
+          <div class="book-installment">Atenção, hábito e repetição reescrevem quem você é</div>
+          <a class="book-btn" href="https://www.amazon.com.br/Escultor-Invis%C3%ADvel-repeti%C3%A7%C3%A3o-reescrevem-silenciosamente-ebook/dp/B0H6KRWVKF/" target="_blank">
             <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             Comprar na Amazon
           </a>
         </div>
       </div>
 
-      <!-- Card 2 - Em breve -->
+      <!-- Card 2 - A Mente Diamante -->
       <div class="book-card">
         <div class="book-img-wrap">
-          <div class="book-placeholder v2">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <path d="M24 8 C24 8 14 18 14 28 C14 34 18.5 40 24 40 C29.5 40 34 34 34 28 C34 18 24 8 24 8Z" fill="rgba(255,255,255,0.15)"/>
-              <path d="M20 22 C20 22 12 26 12 33" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <div class="book-placeholder-text">Próximo<br>Lançamento</div>
-            <div class="book-placeholder-script">Em breve…</div>
-          </div>
-          <span class="badge-pill badge-soon">Em Breve</span>
+          <img src="https://raw.githubusercontent.com/Fabianaju/escritorafabianajuraski/main/diamante" alt="A Mente Diamante – Fabiana Juraski" />
+          <span class="badge-pill badge-amazon">Amazon</span>
         </div>
         <div class="book-info">
-          <div class="book-genre">Romance · Em breve</div>
-          <div class="book-name">Título a Revelar</div>
-          <div class="book-price" style="color: var(--muted); font-size:15px;">Aguardando…</div>
-          <div class="book-installment">Seja a primeira a saber</div>
-          <button class="book-btn muted" onclick="document.querySelector('.newsletter-form input').focus(); document.querySelector('.newsletter').scrollIntoView({behavior:'smooth'})">
-            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            Quero ser avisada
-          </button>
+          <div class="book-genre">Consciência · Física Quântica · Vajrayana</div>
+          <div class="book-name">A Mente Diamante</div>
+          <div class="book-price">eBook Kindle</div>
+          <div class="book-installment">Como a consciência cria a realidade</div>
+          <a class="book-btn" href="https://www.amazon.com.br/mente-diamante-como-consci%C3%AAncia-realidade-ebook/dp/B0H4BVPHWW/" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Comprar na Amazon
+          </a>
         </div>
       </div>
 
-      <!-- Card 3 - Em breve -->
+      <!-- Card 3 - Próximo lançamento -->
       <div class="book-card">
         <div class="book-img-wrap">
           <div class="book-placeholder v3">
@@ -1280,8 +1272,8 @@
 
 <!-- ── QUOTE STRIP ───────────────────────────────── -->
 <div class="quote-strip">
-  <p class="quote-text">"Algumas promessas o tempo não é capaz de apagar."</p>
-  <div class="quote-source">— A Última Promessa do Verão</div>
+  <p class="quote-text">"Você é, agora mesmo, o escultor e a escultura. Isso não é metáfora — é anatomia."</p>
+  <div class="quote-source">— O Escultor Invisível, Fabiana Juraski</div>
 </div>
 
 <!-- ── AUTHOR ─────────────────────────────────────── -->
@@ -1299,14 +1291,13 @@
     <div class="author-name">Fabiana Juraski</div>
     <div class="author-title-line"></div>
     <p class="author-desc">
-      Escritora apaixonada por histórias de amor que tocam a alma.
-      Acredita que cada romance tem o poder de nos fazer sentir menos sozinhos
-      e mais esperançosos. Em seus livros, você encontrará personagens
-      reais, emoções genuínas e aquele frio na barriga que só um bom romance proporciona.
+      Escritora e pesquisadora da mente, Fabiana Juraski cruza neurociência,
+      espiritualidade e tradições contemplativas para revelar como pensamentos,
+      hábitos e padrões invisíveis moldam silenciosamente quem somos.
       <br><br>
-      Seu debut, <em>A Última Promessa do Verão</em>,
-      já encantou leitoras em todo o Brasil com sua história envolvente de
-      segundas chances e amor verdadeiro.
+      Em seus livros, você encontrará uma ponte entre a ciência moderna e a sabedoria
+      ancestral — <em>O Escultor Invisível</em> e <em>A Mente Diamante</em>
+      já tocam leitoras em todo o Brasil com profundidade e clareza transformadoras.
     </p>
     <div class="social-row">
       <!-- Instagram -->
@@ -1336,13 +1327,13 @@
     <h2 class="section-title">O que as <em>Leitoras</em> dizem</h2>
     <svg class="section-ornament" width="140" height="20" viewBox="0 0 140 20" fill="none">
       <line x1="0" y1="10" x2="50" y2="10" stroke="url(#gl2)" stroke-width="0.8"/>
-      <circle cx="70" cy="10" r="3" fill="#c9934a" opacity=".4"/>
-      <circle cx="60" cy="10" r="1.5" fill="#c9934a" opacity=".25"/>
-      <circle cx="80" cy="10" r="1.5" fill="#c9934a" opacity=".25"/>
+      <circle cx="70" cy="10" r="3" fill="#89CFF0" opacity=".4"/>
+      <circle cx="60" cy="10" r="1.5" fill="#89CFF0" opacity=".25"/>
+      <circle cx="80" cy="10" r="1.5" fill="#89CFF0" opacity=".25"/>
       <line x1="90" y1="10" x2="140" y2="10" stroke="url(#gr2)" stroke-width="0.8"/>
       <defs>
-        <linearGradient id="gl2" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#c9934a" stop-opacity="0"/><stop offset="100%" stop-color="#c9934a" stop-opacity=".4"/></linearGradient>
-        <linearGradient id="gr2" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#c9934a" stop-opacity=".4"/><stop offset="100%" stop-color="#c9934a" stop-opacity="0"/></linearGradient>
+        <linearGradient id="gl2" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#89CFF0" stop-opacity="0"/><stop offset="100%" stop-color="#89CFF0" stop-opacity=".4"/></linearGradient>
+        <linearGradient id="gr2" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#89CFF0" stop-opacity=".4"/><stop offset="100%" stop-color="#89CFF0" stop-opacity="0"/></linearGradient>
       </defs>
     </svg>
   </div>
@@ -1350,38 +1341,38 @@
   <div class="testimonials-grid">
     <div class="testimonial-card">
       <div class="stars">
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
       </div>
       <div class="testimonial-divider"></div>
-      <p class="testimonial-text">Li de uma vez só! A Última Promessa do Verão me fez chorar, sorrir e suspirar. Fabiana tem um talento incrível para criar personagens que a gente carrega no coração.</p>
+      <p class="testimonial-text">O Escultor Invisível mudou minha relação com meus próprios pensamentos. Fabiana conecta neurociência e budismo de um jeito que parece simples e ao mesmo tempo profundo demais.</p>
       <div class="testimonial-author">— Ana Luíza M. · Leitora verificada</div>
     </div>
     <div class="testimonial-card">
       <div class="stars">
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
       </div>
       <div class="testimonial-divider"></div>
-      <p class="testimonial-text">Que livro gostoso de ler! A escrita da Fabiana é fluida e envolvente. Me senti dentro da história desde a primeira página. Esperando ansiosamente pelo próximo!</p>
+      <p class="testimonial-text">A Mente Diamante me fez entender que sou muito mais do que meus condicionamentos. Leitura densa e transformadora — reli três vezes e cada leitura revelou algo novo.</p>
       <div class="testimonial-author">— Camila R. · Leitora verificada</div>
     </div>
     <div class="testimonial-card">
       <div class="stars">
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
-        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#89CFF0"/></svg>
       </div>
       <div class="testimonial-divider"></div>
-      <p class="testimonial-text">Indico de olhos fechados! É exatamente o tipo de romance que me faz lembrar por que amo ler. A história de segunda chance é perfeita, cheia de tensão e emoção.</p>
+      <p class="testimonial-text">Finalmente um livro que une ciência e espiritualidade sem superficialidade. Fabiana escreve com clareza e profundidade. O Escultor Invisível deveria ser leitura obrigatória.</p>
       <div class="testimonial-author">— Juliana F. · Leitora verificada</div>
     </div>
   </div>
@@ -1392,15 +1383,15 @@
   <div class="newsletter-content">
     <!-- Floral SVG icon -->
     <svg class="newsletter-icon" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="25" cy="25" r="5" fill="rgba(201,147,74,0.5)"/>
-      <ellipse cx="25" cy="13" rx="5" ry="9" fill="rgba(201,147,74,0.25)"/>
-      <ellipse cx="25" cy="37" rx="5" ry="9" fill="rgba(201,147,74,0.2)"/>
-      <ellipse cx="13" cy="25" rx="9" ry="5" fill="rgba(201,147,74,0.2)"/>
-      <ellipse cx="37" cy="25" rx="9" ry="5" fill="rgba(201,147,74,0.15)"/>
-      <ellipse cx="17" cy="17" rx="5" ry="9" fill="rgba(232,196,204,0.2)" transform="rotate(45 17 17)"/>
-      <ellipse cx="33" cy="33" rx="5" ry="9" fill="rgba(232,196,204,0.2)" transform="rotate(45 33 33)"/>
-      <ellipse cx="33" cy="17" rx="5" ry="9" fill="rgba(232,196,204,0.2)" transform="rotate(-45 33 17)"/>
-      <ellipse cx="17" cy="33" rx="5" ry="9" fill="rgba(232,196,204,0.2)" transform="rotate(-45 17 33)"/>
+      <circle cx="25" cy="25" r="5" fill="rgba(59,60,136,0.5)"/>
+      <ellipse cx="25" cy="13" rx="5" ry="9" fill="rgba(137,207,240,0.25)"/>
+      <ellipse cx="25" cy="37" rx="5" ry="9" fill="rgba(137,207,240,0.2)"/>
+      <ellipse cx="13" cy="25" rx="9" ry="5" fill="rgba(137,207,240,0.2)"/>
+      <ellipse cx="37" cy="25" rx="9" ry="5" fill="rgba(137,207,240,0.15)"/>
+      <ellipse cx="17" cy="17" rx="5" ry="9" fill="rgba(201,196,232,0.2)" transform="rotate(45 17 17)"/>
+      <ellipse cx="33" cy="33" rx="5" ry="9" fill="rgba(201,196,232,0.2)" transform="rotate(45 33 33)"/>
+      <ellipse cx="33" cy="17" rx="5" ry="9" fill="rgba(201,196,232,0.2)" transform="rotate(-45 33 17)"/>
+      <ellipse cx="17" cy="33" rx="5" ry="9" fill="rgba(201,196,232,0.2)" transform="rotate(-45 17 33)"/>
     </svg>
     <h3>Fique por dentro dos Lançamentos</h3>
     <p>Cadastre-se e seja a primeira a saber das novidades, lançamentos e promoções exclusivas</p>
@@ -1416,15 +1407,15 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo">Fabiana Juraski</div>
-      <p>Escritora de romances contemporâneos apaixonantes. Histórias de amor que ficam no coração. Todos os direitos reservados.</p>
+      <p>Escritora e pesquisadora da mente. Neurociência, espiritualidade e sabedoria contemplativa para transformar quem você é. Todos os direitos reservados.</p>
       <div class="social-row" style="margin-top:20px;">
-        <a class="social-link" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1); color:rgba(232,196,204,.5);" href="#">
+        <a class="social-link" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1); color:rgba(201,196,232,.5);" href="#">
           <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
         </a>
-        <a class="social-link" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1); color:rgba(232,196,204,.5);" href="#">
+        <a class="social-link" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1); color:rgba(201,196,232,.5);" href="#">
           <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
         </a>
-        <a class="social-link" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1); color:rgba(232,196,204,.5);" href="#">
+        <a class="social-link" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1); color:rgba(201,196,232,.5);" href="#">
           <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
         </a>
       </div>
@@ -1432,15 +1423,15 @@
     <div class="footer-col">
       <h4>Livros</h4>
       <ul>
-        <li><a href="#">A Última Promessa do Verão</a></li>
-        <li><a href="#">Próximos Lançamentos</a></li>
+        <li><a href="https://www.amazon.com.br/Escultor-Invis%C3%ADvel-repeti%C3%A7%C3%A3o-reescrevem-silenciosamente-ebook/dp/B0H6KRWVKF/" target="_blank">O Escultor Invisível</a></li>
+        <li><a href="https://www.amazon.com.br/mente-diamante-como-consci%C3%AAncia-realidade-ebook/dp/B0H4BVPHWW/" target="_blank">A Mente Diamante</a></li>
         <li><a href="#">Todos os Títulos</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Links</h4>
       <ul>
-        <li><a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">Amazon Brasil</a></li>
+        <li><a href="https://www.amazon.com.br/Escultor-Invis%C3%ADvel-repeti%C3%A7%C3%A3o-reescrevem-silenciosamente-ebook/dp/B0H6KRWVKF/" target="_blank">Amazon Brasil</a></li>
         <li><a href="#">Sobre a Autora</a></li>
         <li><a href="#">Contato</a></li>
         <li><a href="#">Política de Privacidade</a></li>
@@ -1460,9 +1451,9 @@
   let W, H, particles = [];
 
   const COLORS = [
-    'rgba(201,147,74,', // gold
-    'rgba(232,196,204,', // petal
-    'rgba(155,48,80,',  // burgundy light
+    'rgba(59,60,136,', // gold
+    'rgba(201,196,232,', // petal
+    'rgba(137,207,240,',  // burgundy light
   ];
 
   function resize() {
@@ -1559,7 +1550,7 @@ document.querySelector('.newsletter-form button').addEventListener('click', func
       btn.style.background = '';
     }, 3500);
   } else {
-    input.style.outline = '2px solid rgba(201,147,74,.6)';
+    input.style.outline = '2px solid rgba(59,60,136,.5)';
     input.placeholder = 'Digite um e-mail válido…';
     setTimeout(() => { input.style.outline = ''; input.placeholder = 'Seu melhor e-mail…'; }, 2000);
   }
