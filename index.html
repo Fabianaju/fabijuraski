@@ -229,83 +229,82 @@
       letter-spacing: 8px;
     }
 
-    /* ── HERO ────────────────────────────────── */
-    .hero {
+    /* ── HERO CAROUSEL ───────────────────────── */
+    .hero-carousel {
       position: relative;
-      min-height: 90vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      width: 100%;
       overflow: hidden;
-      background: linear-gradient(135deg, var(--burg-dk) 0%, #2a0814 50%, #1a0810 100%);
+      background: #111;
+      line-height: 0;
     }
-    /* Textured background pattern */
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(201,147,74,.08) 0%, transparent 70%),
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9934a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      z-index: 0;
-    }
-
-    /* Radial glow effect */
-    .hero-glow {
-      position: absolute;
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(201,147,74,.12) 0%, transparent 70%);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 0;
-      animation: pulseGlow 4s ease-in-out infinite;
-    }
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-    }
-
-    .hero > * { position: relative; z-index: 1; }
-
-    .hero-left {
+    .carousel-track {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 40px;
+      transition: transform .7s cubic-bezier(.77,0,.175,1);
+      will-change: transform;
     }
-    .book-stage {
+    .carousel-slide {
+      min-width: 100%;
       position: relative;
-      display: inline-block;
     }
-    /* Ambient light behind book */
-    .book-stage::before {
-      content: '';
-      position: absolute;
-      width: 220px; height: 340px;
-      border-radius: 8px;
-      background: radial-gradient(ellipse, rgba(201,147,74,.35), transparent 70%);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      filter: blur(30px);
-      z-index: -1;
+    .carousel-slide a {
+      display: block;
+      width: 100%;
     }
-    .book-cover-img {
-      width: 240px;
-      height: 360px;
+    .carousel-slide img {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
       object-fit: cover;
-      border-radius: 3px 12px 12px 3px;
-      box-shadow:
-        -6px 0 20px rgba(0,0,0,.8),
-        6px 6px 40px rgba(0,0,0,.6),
-        0 0 0 1px rgba(201,147,74,.2);
-      animation: floatBook 4s ease-in-out infinite;
-      cursor: pointer;
-      transition: transform .3s;
+      object-position: center top;
+      display: block;
     }
-    .book-cover-img:hover { transform: scale(1.04) rotateY(-5deg) translateY(-6px); }
-    @keyframes floatBook {
-      0%, 100% { transform: translateY(0) rotateY(0); }
-      50% { transform: translateY(-12px) rotateY(-3deg); }
+
+    /* Arrows */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(0,0,0,.35);
+      border: 1.5px solid rgba(201,147,74,.4);
+      color: var(--gold-lt);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all .25s;
+      backdrop-filter: blur(4px);
+    }
+    .carousel-arrow:hover {
+      background: rgba(201,147,74,.3);
+      border-color: var(--gold-lt);
+    }
+    .carousel-arrow svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .carousel-arrow.prev { left: 18px; }
+    .carousel-arrow.next { right: 18px; }
+
+    /* Dots */
+    .carousel-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+    .carousel-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.35);
+      cursor: pointer;
+      transition: all .3s;
+      border: 1px solid rgba(255,255,255,.2);
+    }
+    .carousel-dot.active {
+      background: var(--gold-lt);
+      border-color: var(--gold);
+      transform: scale(1.25);
     }
 
     /* Petal decorations around book */
@@ -324,103 +323,6 @@
       0%, 100% { transform: translateY(0) rotate(0deg); opacity: .5; }
       50% { transform: translateY(6px) rotate(-12deg); opacity: .9; }
     }
-
-    /* Hero right */
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 60px 60px 60px 20px;
-    }
-    .hero-eyebrow {
-      font-family: var(--ff-display);
-      font-size: 9px;
-      letter-spacing: 4px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .hero-eyebrow::before, .hero-eyebrow::after {
-      content: '';
-      display: block;
-      height: 1px;
-      width: 30px;
-      background: linear-gradient(90deg, transparent, var(--gold));
-    }
-    .hero-eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
-
-    .hero-title {
-      font-family: var(--ff-serif);
-      font-size: 58px;
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.08;
-      margin-bottom: 6px;
-      letter-spacing: -1px;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-lt);
-      font-weight: 300;
-    }
-    .hero-title .script-word {
-      font-family: var(--ff-script);
-      font-size: 80px;
-      line-height: .9;
-      color: var(--gold-lt);
-      display: block;
-    }
-
-    .hero-author {
-      font-family: var(--ff-body);
-      font-size: 12px;
-      letter-spacing: 4px;
-      color: var(--petal);
-      text-transform: uppercase;
-      margin-bottom: 28px;
-      opacity: .8;
-    }
-
-    .hero-divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    .hero-divider-line {
-      flex: 1;
-      max-width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold));
-    }
-    .hero-divider-line.right { background: linear-gradient(90deg, var(--gold), transparent); }
-
-    .hero-desc {
-      color: rgba(232,196,204,.75);
-      font-size: 14px;
-      line-height: 1.9;
-      margin-bottom: 32px;
-      max-width: 380px;
-      font-weight: 300;
-    }
-
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
-    .tag {
-      background: rgba(201,147,74,.12);
-      color: var(--gold-lt);
-      border: 1px solid rgba(201,147,74,.3);
-      border-radius: 30px;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      padding: 5px 14px;
-      text-transform: uppercase;
-      transition: all .2s;
-    }
-    .tag:hover { background: rgba(201,147,74,.25); border-color: var(--gold); }
 
     .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
     .btn-primary {
@@ -1114,71 +1016,67 @@
   <a href="#">Contato</a>
 </nav>
 
-<!-- ── HERO ─────────────────────────────────────── -->
-<section class="hero">
-  <div class="hero-glow"></div>
+<!-- ── HERO CAROUSEL ──────────────────────────────── -->
+<section class="hero-carousel" id="heroCarousel">
+  <div class="carousel-track" id="carouselTrack">
 
-  <!-- SVG Petal decorations -->
-  <svg class="petal-deco p1" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="30" cy="30" rx="10" ry="26" fill="rgba(201,147,74,0.2)" transform="rotate(-30 30 30)"/>
-    <ellipse cx="30" cy="30" rx="10" ry="26" fill="rgba(201,147,74,0.12)" transform="rotate(30 30 30)"/>
-  </svg>
-  <svg class="petal-deco p2" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="25" cy="25" rx="8" ry="20" fill="rgba(232,196,204,0.2)" transform="rotate(20 25 25)"/>
-    <ellipse cx="25" cy="25" rx="8" ry="20" fill="rgba(232,196,204,0.12)" transform="rotate(-20 25 25)"/>
-  </svg>
-  <svg class="petal-deco p3" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="22" cy="22" rx="7" ry="18" fill="rgba(201,147,74,0.18)" transform="rotate(45 22 22)"/>
-  </svg>
-
-  <div class="hero-left">
-    <div class="book-stage">
+    <!-- Slide 1: A Última Promessa de Verão -->
+    <div class="carousel-slide">
       <a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
-        <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/a%20ultima.jpg" alt="A Última Promessa do Verão – Fabi Juraski" class="book-cover-img" />
+        <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/promessa.png"
+             alt="A Última Promessa de Verão – Fabi Juraski" />
       </a>
     </div>
+
+    <!-- Slide 2: Além das Promessas -->
+    <div class="carousel-slide">
+      <a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
+        <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/promessas.png"
+             alt="Além das Promessas – Fabi Juraski" />
+      </a>
+    </div>
+
+    <!-- Slide 3: Além das Aparências -->
+    <div class="carousel-slide">
+      <a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
+        <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/aparencias.png"
+             alt="Além das Aparências – Fabi Juraski" />
+      </a>
+    </div>
+
+    <!-- Slide 4: Entre e Destinos -->
+    <div class="carousel-slide">
+      <a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
+        <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/entredestinos.png"
+             alt="Entre e Destinos – Fabi Juraski" />
+      </a>
+    </div>
+
+    <!-- Slide 5: Capa principal -->
+    <div class="carousel-slide">
+      <a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
+        <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/capa.png"
+             alt="Fabi Juraski – Escritora" />
+      </a>
+    </div>
+
   </div>
 
-  <div class="hero-right">
-    <div class="hero-eyebrow">
-      Novo Lançamento
-    </div>
+  <!-- Arrows -->
+  <button class="carousel-arrow prev" id="carouselPrev" aria-label="Anterior">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="carousel-arrow next" id="carouselNext" aria-label="Próximo">
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
 
-    <h1 class="hero-title">
-      A <em>Última</em><br>
-      <span class="script-word">Promessa</span>
-      de Verão
-    </h1>
-    <div class="hero-author">por Fabi Juraski</div>
-
-    <div class="hero-divider">
-      <div class="hero-divider-line"></div>
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <path d="M9 1 L10.5 7 L16 7 L11.5 10.5 L13 16.5 L9 13 L5 16.5 L6.5 10.5 L2 7 L7.5 7 Z" fill="rgba(201,147,74,.5)"/>
-      </svg>
-      <div class="hero-divider-line right"></div>
-    </div>
-
-    <p class="hero-desc">
-      Um verão que deveria ser esquecido. Uma promessa que mudaria tudo. 
-      Entre memórias e novos começos, dois corações descobrem que alguns laços 
-      são fortes demais para serem apagados pelo tempo.
-    </p>
-
-    <div class="hero-tags">
-      <span class="tag">Romance Contemporâneo</span>
-      <span class="tag">Second Chance</span>
-      <span class="tag">Verão</span>
-      <span class="tag">Emotional</span>
-    </div>
-
-    <div class="hero-cta">
-      <a class="btn-primary" href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        Comprar na Amazon
-      </a>
-      <button class="btn-outline">Saiba Mais</button>
-    </div>
+  <!-- Dots -->
+  <div class="carousel-dots" id="carouselDots">
+    <div class="carousel-dot active" data-index="0"></div>
+    <div class="carousel-dot" data-index="1"></div>
+    <div class="carousel-dot" data-index="2"></div>
+    <div class="carousel-dot" data-index="3"></div>
+    <div class="carousel-dot" data-index="4"></div>
   </div>
 </section>
 
@@ -1564,6 +1462,43 @@ document.querySelector('.newsletter-form button').addEventListener('click', func
     setTimeout(() => { input.style.outline = ''; input.placeholder = 'Seu melhor e-mail…'; }, 2000);
   }
 });
+
+/* ── HERO CAROUSEL ── */
+(function() {
+  const track = document.getElementById('carouselTrack');
+  const dots  = document.querySelectorAll('.carousel-dot');
+  const total = document.querySelectorAll('.carousel-slide').length;
+  let current = 0;
+  let timer;
+
+  function goTo(index) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 5000);
+  }
+
+  document.getElementById('carouselNext').addEventListener('click', () => { next(); resetTimer(); });
+  document.getElementById('carouselPrev').addEventListener('click', () => { prev(); resetTimer(); });
+  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.index); resetTimer(); }));
+
+  // Touch / swipe support
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); resetTimer(); }
+  }, { passive: true });
+
+  resetTimer();
+})();
 
 /* ── SCROLL REVEAL ── */
 const observer = new IntersectionObserver((entries) => {
