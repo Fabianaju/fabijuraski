@@ -3,588 +3,1108 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fabiana Juraski – Autora</title>
+  <title>Fabiana Juraski – Escritora de Romances</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Raleway:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel+Decorative:wght@400;700&family=Great+Vibes&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* ─── TOKENS ─────────────────────────────── */
+    /* ── TOKENS ─────────────────────────────── */
     :root {
-      --rose:     #c4546a;
-      --rose-dk:  #9b3550;
-      --blush:    #f5dde5;
-      --cream:    #fdf7f9;
-      --ink:      #1e1118;
-      --muted:    #7a5c66;
-      --gold:     #c9934a;
-      --white:    #ffffff;
-      --ff-title: 'Playfair Display', serif;
-      --ff-hand:  'Dancing Script', cursive;
-      --ff-body:  'Raleway', sans-serif;
-      --radius:   8px;
-      --shadow:   0 4px 24px rgba(196,84,106,.15);
+      --gold:       #c9934a;
+      --gold-lt:    #e8b96a;
+      --gold-dk:    #9a6a2a;
+      --petal:      #e8c4cc;
+      --petal-lt:   #f5e6ea;
+      --burgundy:   #6b1a2e;
+      --burg-dk:    #3d0a18;
+      --burg-lt:    #9b3050;
+      --cream:      #fdf8f3;
+      --ink:        #1a0e14;
+      --muted:      #7a5c66;
+      --white:      #ffffff;
+
+      --ff-display: 'Cinzel Decorative', serif;
+      --ff-serif:   'Cormorant Garamond', serif;
+      --ff-body:    'Raleway', sans-serif;
+      --ff-script:  'Great Vibes', cursive;
+
+      --shadow-gold: 0 8px 40px rgba(201,147,74,.25);
+      --shadow-burg: 0 8px 40px rgba(107,26,46,.3);
     }
 
-    /* ─── RESET ──────────────────────────────── */
+    /* ── RESET ──────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--ff-body); background: var(--cream); color: var(--ink); }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
 
-    /* ─── TOP BAR ────────────────────────────── */
+    /* ── PARTICLE CANVAS ────────────────────── */
+    #particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── ORNAMENT SVG helper ─────────────────── */
+    .ornament { display: block; margin: 0 auto; }
+
+    /* ── PROMO STRIP ─────────────────────────── */
+    .promo-strip {
+      background: linear-gradient(90deg, var(--burg-dk), var(--burgundy), var(--burg-dk));
+      color: var(--gold-lt);
+      text-align: center;
+      font-family: var(--ff-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .promo-strip::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+      animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer { to { left: 140%; } }
+
+    /* ── HEADER ─────────────────────────────── */
     .topbar {
-      background: var(--cream);
+      background: rgba(253,248,243,.97);
+      backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 40px;
-      border-bottom: 1px solid #f0dce3;
+      padding: 14px 48px;
+      border-bottom: 1px solid rgba(201,147,74,.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
       gap: 16px;
-      flex-wrap: wrap;
     }
-    .topbar-welcome { font-size: 12px; color: var(--muted); line-height: 1.4; }
-    .topbar-welcome a { color: var(--rose); font-weight: 600; }
-    .logo {
-      font-family: var(--ff-hand);
-      font-size: 32px;
-      color: var(--rose-dk);
+    .topbar-welcome {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: .5px;
+    }
+    .topbar-welcome a { color: var(--burgundy); font-weight: 600; border-bottom: 1px solid rgba(107,26,46,.3); }
+    .topbar-welcome a:hover { color: var(--gold-dk); }
+
+    .logo-wrap { text-align: center; }
+    .logo-title {
+      font-family: var(--ff-script);
+      font-size: 36px;
+      color: var(--burgundy);
+      line-height: 1;
       letter-spacing: 1px;
     }
-    .topbar-right { display: flex; align-items: center; gap: 16px; }
+    .logo-sub {
+      font-family: var(--ff-display);
+      font-size: 7px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .topbar-right { display: flex; align-items: center; gap: 14px; }
     .search-bar {
       display: flex;
       align-items: center;
-      border: 1.5px solid #e0c8d0;
-      border-radius: 20px;
+      border: 1px solid rgba(201,147,74,.4);
+      border-radius: 30px;
       overflow: hidden;
-      background: #fff;
+      background: rgba(255,255,255,.8);
     }
     .search-bar input {
-      border: none; outline: none; padding: 6px 14px; font-size: 13px; width: 180px; font-family: var(--ff-body);
+      border: none; outline: none;
+      padding: 7px 16px;
+      font-size: 12px;
+      width: 160px;
+      font-family: var(--ff-body);
+      background: transparent;
+      color: var(--ink);
     }
+    .search-bar input::placeholder { color: var(--muted); }
     .search-bar button {
-      background: var(--rose); border: none; padding: 8px 14px; cursor: pointer; color: #fff; font-size: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      border: none;
+      padding: 8px 14px;
+      cursor: pointer;
+      color: #fff;
+      font-size: 13px;
+      transition: opacity .2s;
     }
-    .cart-btn {
-      background: var(--rose); color: #fff; border: none; border-radius: var(--radius);
-      padding: 8px 16px; font-size: 12px; font-family: var(--ff-body); cursor: pointer; font-weight: 600;
-    }
-    .user-icon { font-size: 22px; color: var(--muted); cursor: pointer; }
+    .search-bar button:hover { opacity: .85; }
 
-    /* ─── NAV ────────────────────────────────── */
+    .icon-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,147,74,.3);
+      background: transparent;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      transition: all .2s;
+      position: relative;
+    }
+    .icon-btn:hover { background: var(--petal-lt); border-color: var(--gold); color: var(--burgundy); }
+    .icon-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+
+    .cart-btn {
+      background: linear-gradient(135deg, var(--burgundy), var(--burg-dk));
+      color: var(--gold-lt);
+      border: none;
+      border-radius: 30px;
+      padding: 9px 20px;
+      font-size: 11px;
+      font-family: var(--ff-body);
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 7px;
+      transition: all .2s;
+      box-shadow: 0 3px 14px rgba(107,26,46,.3);
+    }
+    .cart-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 20px rgba(107,26,46,.4); }
+    .cart-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+    /* ── NAV ─────────────────────────────────── */
     nav {
-      background: var(--rose);
+      background: linear-gradient(90deg, var(--burg-dk) 0%, var(--burgundy) 50%, var(--burg-dk) 100%);
       display: flex;
       justify-content: center;
       gap: 0;
+      position: relative;
+    }
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
     nav a {
-      color: #fff;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 1px;
-      padding: 13px 28px;
+      color: rgba(255,255,255,.75);
+      font-family: var(--ff-body);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      padding: 15px 28px;
       text-transform: uppercase;
-      transition: background .2s;
-      border-right: 1px solid rgba(255,255,255,.15);
+      transition: all .25s;
+      position: relative;
     }
-    nav a:first-child { border-left: 1px solid rgba(255,255,255,.15); }
-    nav a:hover, nav a.active { background: var(--rose-dk); }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; right: 50%;
+      height: 2px;
+      background: var(--gold-lt);
+      transition: left .25s, right .25s;
+    }
+    nav a:hover, nav a.active { color: var(--gold-lt); }
+    nav a:hover::after, nav a.active::after { left: 20%; right: 20%; }
 
-    /* ─── HERO ───────────────────────────────── */
+    /* ── DIVIDER ORNAMENT ────────────────────── */
+    .divider-ornament {
+      text-align: center;
+      margin: 12px 0;
+      color: var(--gold);
+      font-size: 18px;
+      opacity: .6;
+      letter-spacing: 8px;
+    }
+
+    /* ── HERO ────────────────────────────────── */
     .hero {
       position: relative;
+      min-height: 90vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      min-height: 480px;
       overflow: hidden;
-      background: url('autora-banner.png') center/cover no-repeat;
+      background: linear-gradient(135deg, var(--burg-dk) 0%, #2a0814 50%, #1a0810 100%);
     }
+    /* Textured background pattern */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(10,5,8,.6) 0%, rgba(10,5,8,.3) 40%, rgba(10,5,8,.7) 100%);
+      background-image:
+        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(201,147,74,.08) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9934a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       z-index: 0;
     }
+
+    /* Radial glow effect */
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(201,147,74,.12) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      animation: pulseGlow 4s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
     .hero > * { position: relative; z-index: 1; }
+
     .hero-left {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px;
+      padding: 60px 40px;
     }
-    .book-mockup-link { display: block; }
+    .book-stage {
+      position: relative;
+      display: inline-block;
+    }
+    /* Ambient light behind book */
+    .book-stage::before {
+      content: '';
+      position: absolute;
+      width: 220px; height: 340px;
+      border-radius: 8px;
+      background: radial-gradient(ellipse, rgba(201,147,74,.35), transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      filter: blur(30px);
+      z-index: -1;
+    }
     .book-cover-img {
       width: 240px;
       height: 360px;
       object-fit: cover;
-      border-radius: 4px 14px 14px 4px;
-      box-shadow: -8px 8px 40px rgba(0,0,0,.7), 8px 0 20px rgba(196,84,106,.3);
-      animation: floatBook 3s ease-in-out infinite;
-      transition: transform .2s;
+      border-radius: 3px 12px 12px 3px;
+      box-shadow:
+        -6px 0 20px rgba(0,0,0,.8),
+        6px 6px 40px rgba(0,0,0,.6),
+        0 0 0 1px rgba(201,147,74,.2);
+      animation: floatBook 4s ease-in-out infinite;
+      cursor: pointer;
+      transition: transform .3s;
     }
-    .book-mockup-link:hover .book-cover-img { transform: scale(1.03) translateY(-6px); }
-      width: 240px;
-      height: 340px;
-      background: linear-gradient(160deg, #f5a7b8 0%, #c4546a 40%, #7a1f3d 100%);
-      border-radius: 4px 14px 14px 4px;
-      box-shadow: -8px 8px 40px rgba(0,0,0,.6), 8px 0 20px rgba(196,84,106,.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-      animation: floatBook 3s ease-in-out infinite;
-    }
+    .book-cover-img:hover { transform: scale(1.04) rotateY(-5deg) translateY(-6px); }
     @keyframes floatBook {
-      0%,100% { transform: translateY(0); }
-      50%      { transform: translateY(-10px); }
-    }
-    .book-mockup::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 18px;
-      background: linear-gradient(90deg, #3a0a20, #7a1f3d);
-      border-radius: 4px 0 0 4px;
-    }
-    .book-title-mock {
-      font-family: var(--ff-title);
-      font-size: 20px;
-      color: #fff;
-      line-height: 1.3;
-      margin-bottom: 12px;
-      text-shadow: 0 2px 8px rgba(0,0,0,.5);
-    }
-    .book-author-mock {
-      font-family: var(--ff-hand);
-      font-size: 16px;
-      color: #ffd4e0;
-    }
-    .book-deco {
-      font-size: 28px;
-      margin-bottom: 10px;
+      0%, 100% { transform: translateY(0) rotateY(0); }
+      50% { transform: translateY(-12px) rotateY(-3deg); }
     }
 
+    /* Petal decorations around book */
+    .petal-deco {
+      position: absolute;
+      pointer-events: none;
+    }
+    .petal-deco.p1 { top: -20px; right: -30px; animation: petalFloat1 6s ease-in-out infinite; }
+    .petal-deco.p2 { bottom: -10px; left: -40px; animation: petalFloat2 5s ease-in-out infinite 1s; }
+    .petal-deco.p3 { top: 40%; right: -50px; animation: petalFloat1 7s ease-in-out infinite .5s; }
+    @keyframes petalFloat1 {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: .7; }
+      50% { transform: translateY(-8px) rotate(15deg); opacity: 1; }
+    }
+    @keyframes petalFloat2 {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: .5; }
+      50% { transform: translateY(6px) rotate(-12deg); opacity: .9; }
+    }
+
+    /* Hero right */
     .hero-right {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 50px 50px 50px 30px;
+      padding: 60px 60px 60px 20px;
     }
-    .hero-badge {
-      display: inline-block;
-      background: var(--gold);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
+    .hero-eyebrow {
+      font-family: var(--ff-display);
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: var(--gold);
       text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-      width: fit-content;
-    }
-    .hero-title {
-      font-family: var(--ff-title);
-      font-size: 42px;
-      color: #fff;
-      line-height: 1.15;
-      margin-bottom: 8px;
-    }
-    .hero-title em { color: #f5a7b8; font-style: italic; }
-    .hero-author {
-      font-family: var(--ff-hand);
-      font-size: 22px;
-      color: #f5a7b8;
       margin-bottom: 20px;
-    }
-    .hero-desc {
-      color: #e8c8d4;
-      font-size: 14px;
-      line-height: 1.7;
-      margin-bottom: 28px;
-      max-width: 380px;
-    }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-    .tag {
-      background: rgba(255,255,255,.12);
-      color: #f5dde5;
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .5px;
-      padding: 4px 12px;
-    }
-    .hero-cta {
       display: flex;
+      align-items: center;
       gap: 12px;
-      flex-wrap: wrap;
     }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 30px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .hero-eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
+
+    .hero-title {
+      font-family: var(--ff-serif);
+      font-size: 58px;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 6px;
+      letter-spacing: -1px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-lt);
+      font-weight: 300;
+    }
+    .hero-title .script-word {
+      font-family: var(--ff-script);
+      font-size: 80px;
+      line-height: .9;
+      color: var(--gold-lt);
+      display: block;
+    }
+
+    .hero-author {
+      font-family: var(--ff-body);
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--petal);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      opacity: .8;
+    }
+
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .hero-divider-line {
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .hero-divider-line.right { background: linear-gradient(90deg, var(--gold), transparent); }
+
+    .hero-desc {
+      color: rgba(232,196,204,.75);
+      font-size: 14px;
+      line-height: 1.9;
+      margin-bottom: 32px;
+      max-width: 380px;
+      font-weight: 300;
+    }
+
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+    .tag {
+      background: rgba(201,147,74,.12);
+      color: var(--gold-lt);
+      border: 1px solid rgba(201,147,74,.3);
+      border-radius: 30px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      padding: 5px 14px;
+      text-transform: uppercase;
+      transition: all .2s;
+    }
+    .tag:hover { background: rgba(201,147,74,.25); border-color: var(--gold); }
+
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
     .btn-primary {
-      background: var(--rose);
-      color: #fff;
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold), var(--gold-dk));
+      color: var(--burg-dk);
       border: none;
-      border-radius: var(--radius);
-      padding: 13px 28px;
+      border-radius: 30px;
+      padding: 14px 32px;
       font-family: var(--ff-body);
       font-weight: 700;
-      font-size: 14px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       cursor: pointer;
-      letter-spacing: .5px;
-      transition: background .2s, transform .15s;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      box-shadow: 0 4px 24px rgba(201,147,74,.4);
+      transition: all .3s;
     }
-    .btn-primary:hover { background: var(--rose-dk); transform: translateY(-2px); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,147,74,.5); }
     .btn-outline {
       background: transparent;
-      color: #fff;
-      border: 2px solid rgba(255,255,255,.4);
-      border-radius: var(--radius);
-      padding: 11px 24px;
+      color: rgba(255,255,255,.8);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 30px;
+      padding: 14px 28px;
       font-family: var(--ff-body);
-      font-weight: 600;
-      font-size: 14px;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: border-color .2s, background .2s;
+      transition: all .3s;
     }
-    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+    .btn-outline:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
 
-    /* ─── SECTION HEADER ─────────────────────── */
-    .section-header {
+    /* ── SECTION TITLES ──────────────────────── */
+    .section-head {
       text-align: center;
-      padding: 56px 20px 36px;
+      padding: 72px 20px 48px;
     }
-    .section-header h2 {
-      font-family: var(--ff-title);
-      font-size: 32px;
-      color: var(--rose-dk);
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
+    .section-eyebrow {
+      font-family: var(--ff-display);
+      font-size: 8px;
+      letter-spacing: 5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
     }
-    .arrows { color: var(--rose); font-size: 18px; letter-spacing: -4px; }
+    .section-title {
+      font-family: var(--ff-serif);
+      font-size: 42px;
+      font-weight: 300;
+      color: var(--burgundy);
+      letter-spacing: -0.5px;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--gold-dk);
+    }
+    .section-ornament { margin: 16px auto 0; display: block; }
 
-    /* ─── BOOK GRID ──────────────────────────── */
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+    /* ── BOOKS GRID ──────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
     .book-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      padding-bottom: 56px;
+      gap: 32px;
+      padding-bottom: 72px;
     }
+
     .book-card {
       background: #fff;
-      border-radius: 10px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 2px 12px rgba(196,84,106,.1);
-      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 2px 20px rgba(107,26,46,.08);
+      transition: all .35s cubic-bezier(.25,.8,.25,1);
       position: relative;
     }
-    .book-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-    .book-cover {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      background: linear-gradient(160deg, #f5a7b8 0%, #c4546a 50%, #7a1f3d 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--ff-title);
-      font-size: 18px;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      line-height: 1.4;
-      min-height: 260px;
-    }
-    .book-cover.v2 { background: linear-gradient(160deg, #dca5c0 0%, #9b3550 50%, #3a0a20 100%); }
-    .book-cover.v3 { background: linear-gradient(160deg, #f0c0d0 0%, #c4546a 30%, #2c0f1e 100%); }
-    .free-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--rose);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-      letter-spacing: .5px;
-    }
-    .amazon-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--gold);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-    .book-info { padding: 16px; }
-    .book-name {
-      font-family: var(--ff-title);
-      font-size: 15px;
-      color: var(--ink);
-      margin-bottom: 6px;
-      line-height: 1.3;
-    }
-    .book-genre {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 10px;
-      font-weight: 500;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-    }
-    .book-price {
-      color: var(--rose);
-      font-weight: 700;
-      font-size: 18px;
-      margin-bottom: 4px;
-    }
-    .book-price-old {
-      color: var(--muted);
-      font-size: 12px;
-      text-decoration: line-through;
-      margin-bottom: 4px;
-    }
-    .book-installment { color: var(--muted); font-size: 11px; }
-    .book-btn {
-      display: block;
-      width: 100%;
-      margin-top: 12px;
-      background: var(--rose);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      padding: 9px;
-      font-family: var(--ff-body);
-      font-weight: 700;
-      font-size: 13px;
-      cursor: pointer;
-      text-align: center;
-      transition: background .2s;
-    }
-    .book-btn:hover { background: var(--rose-dk); }
-
-    /* ─── AUTHOR BANNER ──────────────────────── */
-    .author-banner {
-      background: url('autora-banner.png') center/cover no-repeat;
-      position: relative;
-      padding: 64px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 60px;
-      flex-wrap: wrap;
-    }
-    .author-banner::before {
+    .book-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(30,8,20,.82) 0%, rgba(30,8,20,.65) 100%);
+      border-radius: 16px;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, rgba(201,147,74,.3), transparent, rgba(107,26,46,.2)) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity .35s;
     }
-    .author-banner > * { position: relative; z-index: 1; }
-    .author-photo-wrap {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 4px solid var(--rose);
+    .book-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(107,26,46,.18); }
+    .book-card:hover::before { opacity: 1; }
+
+    .book-img-wrap { position: relative; overflow: hidden; }
+    .book-img-wrap img { width: 100%; aspect-ratio: 3/4; object-fit: cover; transition: transform .5s; }
+    .book-card:hover .book-img-wrap img { transform: scale(1.04); }
+
+    .book-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, var(--blush), var(--rose));
+    }
+    .book-placeholder.v2 {
+      background: linear-gradient(160deg, #d4afc0 0%, var(--burg-lt) 50%, var(--burg-dk) 100%);
+    }
+    .book-placeholder.v3 {
+      background: linear-gradient(160deg, #e0c4a0 0%, #9a6a2a 50%, #2a1a08 100%);
+    }
+    .book-placeholder-text {
+      font-family: var(--ff-serif);
+      font-size: 16px;
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 0 20px;
+      line-height: 1.5;
+    }
+    .book-placeholder-script {
+      font-family: var(--ff-script);
+      font-size: 24px;
+      color: rgba(255,255,255,.5);
+    }
+
+    .badge-pill {
+      position: absolute;
+      font-family: var(--ff-display);
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .badge-amazon {
+      top: 14px; left: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      color: var(--burg-dk);
+    }
+    .badge-soon {
+      top: 14px; right: 14px;
+      background: rgba(107,26,46,.8);
+      color: var(--petal);
+      border: 1px solid rgba(201,147,74,.3);
+      backdrop-filter: blur(4px);
+    }
+
+    .book-info { padding: 20px 22px 22px; }
+    .book-genre {
+      font-size: 9px;
+      color: var(--gold-dk);
+      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .book-name {
+      font-family: var(--ff-serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--burgundy);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .book-price {
+      color: var(--gold-dk);
+      font-weight: 700;
+      font-size: 20px;
+      font-family: var(--ff-serif);
+      margin-bottom: 3px;
+    }
+    .book-installment { color: var(--muted); font-size: 11px; margin-bottom: 16px; }
+    .book-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 72px;
-      flex-shrink: 0;
-      box-shadow: 0 0 0 8px rgba(196,84,106,.15);
-    }
-    .author-text { max-width: 520px; color: #e8c8d4; }
-    .author-text h2 {
-      font-family: var(--ff-hand);
-      font-size: 38px;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-    .author-text .subtitle {
-      color: var(--gold);
+      gap: 8px;
+      width: 100%;
+      background: linear-gradient(135deg, var(--burgundy), var(--burg-dk));
+      color: var(--gold-lt);
+      border: none;
+      border-radius: 30px;
+      padding: 11px 16px;
+      font-family: var(--ff-body);
       font-weight: 600;
-      font-size: 13px;
+      font-size: 11px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      cursor: pointer;
+      transition: all .25s;
+      box-shadow: 0 3px 14px rgba(107,26,46,.25);
     }
-    .author-text p { font-size: 14px; line-height: 1.8; color: #d4a8b8; }
+    .book-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(107,26,46,.4); }
+    .book-btn.muted {
+      background: linear-gradient(135deg, var(--muted), #5a4050);
+    }
+    .book-btn svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; }
 
-    /* ─── NEWSLETTER ─────────────────────────── */
-    .newsletter {
-      background: var(--blush);
-      padding: 48px 20px;
+    /* ── QUOTE STRIP ──────────────────────────── */
+    .quote-strip {
+      background: linear-gradient(135deg, var(--burg-dk), var(--burgundy));
+      padding: 56px 20px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .newsletter h3 {
-      font-family: var(--ff-title);
+    .quote-strip::before {
+      content: '"';
+      position: absolute;
+      top: -30px; left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--ff-serif);
+      font-size: 280px;
+      color: rgba(201,147,74,.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .quote-text {
+      font-family: var(--ff-serif);
       font-size: 26px;
-      color: var(--rose-dk);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--petal);
+      max-width: 680px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+      position: relative;
+    }
+    .quote-source {
+      font-family: var(--ff-display);
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ── AUTHOR SECTION ───────────────────────── */
+    .author-section {
+      padding: 80px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 72px;
+      flex-wrap: wrap;
+      position: relative;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--petal-lt) 100%);
+    }
+    .author-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='40' fill='none' stroke='%23c9934a' stroke-width='.3' opacity='.2'/%3E%3Ccircle cx='60' cy='60' r='55' fill='none' stroke='%23c9934a' stroke-width='.2' opacity='.1'/%3E%3C/svg%3E") center/120px;
+      opacity: .4;
+    }
+
+    .author-photo-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .author-photo-frame {
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold), var(--gold-dk));
+      padding: 3px;
+      position: relative;
+    }
+    .author-photo-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--petal), var(--burg-lt));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .author-photo-inner img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* Decorative ring */
+    .author-photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,147,74,.25);
+    }
+    .author-photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: -22px;
+      border-radius: 50%;
+      border: 1px dashed rgba(201,147,74,.15);
+    }
+
+    .author-text {
+      max-width: 500px;
+      position: relative;
+    }
+    .author-eyebrow {
+      font-family: var(--ff-display);
+      font-size: 8px;
+      letter-spacing: 4px;
+      color: var(--gold-dk);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .author-name {
+      font-family: var(--ff-script);
+      font-size: 56px;
+      color: var(--burgundy);
+      line-height: 1;
       margin-bottom: 8px;
     }
-    .newsletter p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
-    .newsletter-form {
-      display: flex;
-      max-width: 440px;
-      margin: 0 auto;
-      gap: 0;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
+    .author-title-line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 20px;
     }
-    .newsletter-form input {
-      flex: 1;
-      border: none;
-      padding: 14px 20px;
+    .author-desc {
       font-size: 14px;
-      font-family: var(--ff-body);
-      outline: none;
+      line-height: 1.9;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 28px;
     }
-    .newsletter-form button {
-      background: var(--rose);
-      color: #fff;
-      border: none;
-      padding: 14px 24px;
-      font-family: var(--ff-body);
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background .2s;
-    }
-    .newsletter-form button:hover { background: var(--rose-dk); }
+    .author-desc em { color: var(--burg-lt); font-style: italic; }
 
-    /* ─── TESTIMONIALS ───────────────────────── */
-    .testimonials-section { padding: 56px 20px; }
+    /* Social icons */
+    .social-row { display: flex; gap: 12px; margin-top: 4px; }
+    .social-link {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(107,26,46,.2);
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--burgundy);
+      cursor: pointer;
+      transition: all .25s;
+      box-shadow: 0 2px 10px rgba(107,26,46,.08);
+    }
+    .social-link:hover {
+      background: linear-gradient(135deg, var(--burgundy), var(--burg-dk));
+      border-color: var(--burgundy);
+      color: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(107,26,46,.3);
+    }
+    .social-link svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+
+    /* ── TESTIMONIALS ─────────────────────────── */
+    .testimonials-section {
+      background: linear-gradient(180deg, var(--petal-lt) 0%, var(--cream) 100%);
+      padding: 0 20px 80px;
+    }
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      max-width: 1140px;
+      max-width: 1160px;
       margin: 0 auto;
     }
     .testimonial-card {
       background: #fff;
-      border-radius: 10px;
-      padding: 24px;
-      box-shadow: 0 2px 12px rgba(196,84,106,.08);
-      border-top: 3px solid var(--rose);
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 2px 16px rgba(107,26,46,.07);
+      position: relative;
+      transition: all .3s;
     }
-    .stars { color: var(--gold); font-size: 16px; margin-bottom: 10px; letter-spacing: 2px; }
-    .testimonial-card p { font-size: 14px; color: var(--muted); line-height: 1.7; font-style: italic; margin-bottom: 14px; }
-    .testimonial-author { font-weight: 700; font-size: 13px; color: var(--rose-dk); }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 16px; right: 24px;
+      font-family: var(--ff-serif);
+      font-size: 80px;
+      color: rgba(201,147,74,.12);
+      line-height: 1;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(107,26,46,.12); }
 
-    /* ─── FOOTER ─────────────────────────────── */
+    .stars {
+      display: flex; gap: 3px;
+      margin-bottom: 14px;
+    }
+    .star-svg { width: 14px; height: 14px; }
+    .testimonial-text {
+      font-size: 14px;
+      color: #6a4a56;
+      line-height: 1.8;
+      font-style: italic;
+      font-family: var(--ff-serif);
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+    .testimonial-author {
+      font-family: var(--ff-display);
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: var(--gold-dk);
+      text-transform: uppercase;
+    }
+    .testimonial-divider {
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 10px;
+    }
+
+    /* ── NEWSLETTER ───────────────────────────── */
+    .newsletter {
+      background: linear-gradient(135deg, var(--burg-dk) 0%, #1a0810 50%, var(--burg-dk) 100%);
+      padding: 72px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .newsletter::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,147,74,.08) 0%, transparent 70%);
+    }
+    .newsletter-content { position: relative; }
+    .newsletter-icon { margin: 0 auto 20px; display: block; }
+    .newsletter h3 {
+      font-family: var(--ff-serif);
+      font-size: 38px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--petal);
+      margin-bottom: 10px;
+    }
+    .newsletter p {
+      color: rgba(232,196,204,.6);
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: .5px;
+      margin-bottom: 36px;
+    }
+    .newsletter-form {
+      display: flex;
+      max-width: 460px;
+      margin: 0 auto;
+      gap: 0;
+      border-radius: 40px;
+      overflow: hidden;
+      border: 1px solid rgba(201,147,74,.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+    }
+    .newsletter-form input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 15px 24px;
+      font-size: 13px;
+      font-family: var(--ff-body);
+      outline: none;
+      color: #fff;
+      font-weight: 300;
+    }
+    .newsletter-form input::placeholder { color: rgba(232,196,204,.4); }
+    .newsletter-form button {
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold), var(--gold-dk));
+      color: var(--burg-dk);
+      border: none;
+      padding: 15px 28px;
+      font-family: var(--ff-body);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .25s;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover { opacity: .9; }
+
+    /* ── FOOTER ───────────────────────────────── */
     footer {
       background: var(--ink);
-      color: #d4a8b8;
-      padding: 48px 40px 24px;
+      color: rgba(232,196,204,.6);
+      padding: 60px 40px 28px;
     }
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
+      gap: 48px;
       max-width: 1100px;
-      margin: 0 auto 32px;
+      margin: 0 auto 40px;
     }
-    .footer-brand .logo { color: #f5a7b8; font-size: 28px; margin-bottom: 12px; }
-    .footer-brand p { font-size: 13px; line-height: 1.7; color: #a87a8a; }
-    .footer-col h4 {
-      font-family: var(--ff-title);
-      color: #fff;
-      font-size: 16px;
+    .footer-logo {
+      font-family: var(--ff-script);
+      font-size: 34px;
+      color: var(--petal);
       margin-bottom: 14px;
     }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 8px; }
-    .footer-col ul li a { font-size: 13px; color: #a87a8a; transition: color .2s; }
-    .footer-col ul li a:hover { color: #f5a7b8; }
-    .footer-social { display: flex; gap: 12px; margin-top: 16px; }
-    .social-icon {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.08);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-      color: #f5a7b8;
-      cursor: pointer;
-      transition: background .2s;
+    .footer-brand p {
+      font-size: 12px;
+      line-height: 1.8;
+      color: rgba(232,196,204,.4);
+      font-weight: 300;
+      max-width: 260px;
     }
-    .social-icon:hover { background: var(--rose); }
+    .footer-col h4 {
+      font-family: var(--ff-display);
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gold-lt);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      font-size: 12px;
+      color: rgba(232,196,204,.4);
+      font-weight: 300;
+      transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--gold-lt); }
+
     .footer-bottom {
       text-align: center;
-      border-top: 1px solid rgba(255,255,255,.08);
-      padding-top: 20px;
-      font-size: 12px;
-      color: #7a5c66;
-    }
-
-    /* ─── PROMO STRIP ────────────────────────── */
-    .promo-strip {
-      background: var(--gold);
-      color: #fff;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px;
+      border-top: 1px solid rgba(255,255,255,.05);
+      padding-top: 24px;
+      font-size: 11px;
+      color: rgba(232,196,204,.25);
       letter-spacing: .5px;
+      font-weight: 300;
     }
+    .footer-heart { color: var(--burg-lt); }
 
-    /* ─── RESPONSIVE ─────────────────────────── */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 40px 20px 0; }
-      .hero-right { padding: 24px 24px 40px; }
+    /* ── LOGIN MODAL ─────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26,14,20,.78);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: #fff;
+      border-radius: 20px;
+      padding: 48px 44px 40px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(107,26,46,.4);
+      transform: translateY(28px);
+      transition: transform .35s cubic-bezier(.25,.8,.25,1);
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-close {
+      position: absolute; top: 16px; right: 18px;
+      background: none; border: none; cursor: pointer;
+      color: var(--muted); font-size: 22px; line-height: 1;
+      transition: color .2s;
+    }
+    .modal-close:hover { color: var(--burgundy); }
+    .modal-logo { text-align: center; font-family: var(--ff-script); font-size: 32px; color: var(--burgundy); margin-bottom: 4px; }
+    .modal-sub { text-align: center; font-family: var(--ff-display); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 28px; }
+    .btn-google {
+      width: 100%;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 13px 20px;
+      border: 1.5px solid #e0e0e0; border-radius: 30px;
+      background: #fff;
+      font-family: var(--ff-body); font-size: 13px; font-weight: 600; color: #3c4043;
+      cursor: pointer; transition: all .2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+    .btn-google:hover { border-color: #bbb; box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+    .modal-divider {
+      display: flex; align-items: center; gap: 10px;
+      margin: 22px 0; color: #ccc; font-size: 11px;
+      font-family: var(--ff-body); letter-spacing: 1px;
+    }
+    .modal-divider::before, .modal-divider::after { content: ''; flex: 1; height: 1px; background: #eee; }
+    .modal-field { margin-bottom: 14px; }
+    .modal-field label { display: block; font-family: var(--ff-display); font-size: 8px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+    .modal-field input {
+      width: 100%; border: 1.5px solid #e8dde2; border-radius: 10px;
+      padding: 11px 16px; font-size: 13px; font-family: var(--ff-body);
+      color: var(--ink); outline: none; transition: border-color .2s;
+    }
+    .modal-field input:focus { border-color: var(--gold); }
+    .btn-modal-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--burgundy), var(--burg-dk));
+      color: var(--gold-lt); border: none; border-radius: 30px;
+      padding: 13px; font-family: var(--ff-body); font-weight: 700;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; margin-top: 6px; transition: all .25s;
+      box-shadow: 0 4px 16px rgba(107,26,46,.3);
+    }
+    .btn-modal-submit:hover { opacity: .9; transform: translateY(-1px); }
+    .modal-footer { text-align: center; font-size: 11px; color: var(--muted); margin-top: 18px; }
+    .modal-footer a { color: var(--burgundy); font-weight: 600; cursor: pointer; }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 48px 24px 20px; }
+      .hero-right { padding: 24px 32px 48px; }
+      .hero-title { font-size: 44px; }
+      .hero-title .script-word { font-size: 60px; }
       .book-grid { grid-template-columns: repeat(2, 1fr); }
       .testimonials-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      .author-section { gap: 40px; }
     }
-    @media (max-width: 600px) {
-      nav { flex-wrap: wrap; justify-content: flex-start; }
-      nav a { padding: 10px 14px; font-size: 11px; }
-      .book-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
-      .hero-title { font-size: 30px; }
-      .topbar { padding: 10px 16px; }
+    @media (max-width: 640px) {
+      .topbar { padding: 12px 20px; }
+      .topbar-welcome { display: none; }
+      nav a { padding: 12px 14px; font-size: 9px; letter-spacing: 1.5px; }
+      .hero-title { font-size: 34px; }
+      .hero-title .script-word { font-size: 48px; }
+      .book-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .section-title { font-size: 32px; }
       .footer-grid { grid-template-columns: 1fr; }
+      .author-name { font-size: 44px; }
     }
   </style>
 </head>
 <body>
 
-<!-- PROMO STRIP -->
-<div class="promo-strip">🌸 Novo lançamento disponível! "A Última Promessa do Verão" – romance de verão que vai te prender do início ao fim 📖</div>
+<!-- Particles canvas -->
+<canvas id="particles"></canvas>
 
-<!-- TOP BAR -->
+<!-- ── PROMO STRIP ──────────────────────────────── -->
+<div class="promo-strip">
+  ✦ Novo Lançamento ✦ &nbsp; "A Última Promessa do Verão" &nbsp; · &nbsp; Disponível na Amazon &nbsp; ✦
+</div>
+
+<!-- ── HEADER ───────────────────────────────────── -->
 <header class="topbar">
   <div class="topbar-welcome">
-    Olá, seja bem-vinda!<br>
-    <a href="#">Faça seu Login</a> ou <a href="#">Cadastre-se</a>
+    Seja bem-vinda! &nbsp;
+    <a href="#" onclick="document.getElementById('loginModal').classList.add('open'); return false;">Entrar</a> &nbsp;·&nbsp; <a href="#">Cadastrar</a>
   </div>
-  <div class="logo">Fabiana Juraski</div>
+
+  <div class="logo-wrap">
+    <div class="logo-title">Fabiana Juraski</div>
+    <div class="logo-sub">Escritora · Romances Contemporâneos</div>
+  </div>
+
   <div class="topbar-right">
     <div class="search-bar">
-      <input type="text" placeholder="Buscar no site…" />
-      <button>🔍</button>
+      <input type="text" placeholder="Buscar livros…" />
+      <button>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
     </div>
-    <span class="user-icon">👤</span>
-    <button class="cart-btn">🛒 Carrinho<br><small>R$ 0,00</small></button>
+    <button class="icon-btn" title="Minha conta">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </button>
+    <button class="cart-btn">
+      <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      Minha Sacola
+    </button>
   </div>
 </header>
 
-<!-- NAV -->
+<!-- ── NAV ──────────────────────────────────────── -->
 <nav>
   <a href="#" class="active">Livros</a>
   <a href="#">Gêneros</a>
@@ -594,91 +1114,163 @@
   <a href="#">Contato</a>
 </nav>
 
-<!-- HERO -->
+<!-- ── HERO ─────────────────────────────────────── -->
 <section class="hero">
+  <div class="hero-glow"></div>
+
+  <!-- SVG Petal decorations -->
+  <svg class="petal-deco p1" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="30" cy="30" rx="10" ry="26" fill="rgba(201,147,74,0.2)" transform="rotate(-30 30 30)"/>
+    <ellipse cx="30" cy="30" rx="10" ry="26" fill="rgba(201,147,74,0.12)" transform="rotate(30 30 30)"/>
+  </svg>
+  <svg class="petal-deco p2" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="25" cy="25" rx="8" ry="20" fill="rgba(232,196,204,0.2)" transform="rotate(20 25 25)"/>
+    <ellipse cx="25" cy="25" rx="8" ry="20" fill="rgba(232,196,204,0.12)" transform="rotate(-20 25 25)"/>
+  </svg>
+  <svg class="petal-deco p3" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="22" cy="22" rx="7" ry="18" fill="rgba(201,147,74,0.18)" transform="rotate(45 22 22)"/>
+  </svg>
+
   <div class="hero-left">
-    <a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank" class="book-mockup-link">
-      <img src="a_ultima.jpg" alt="A Última Promessa do Verão – Fabiana Juraski" class="book-cover-img" />
-    </a>
+    <div class="book-stage">
+      <a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
+        <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/a%20ultima.jpg" alt="A Última Promessa do Verão – Fabiana Juraski" class="book-cover-img" />
+      </a>
+    </div>
   </div>
+
   <div class="hero-right">
-    <span class="hero-badge">✨ Novo Lançamento</span>
-    <h1 class="hero-title">A <em>Última Promessa</em><br>do Verão</h1>
+    <div class="hero-eyebrow">
+      Novo Lançamento
+    </div>
+
+    <h1 class="hero-title">
+      A <em>Última</em><br>
+      <span class="script-word">Promessa</span>
+      de Verão
+    </h1>
     <div class="hero-author">por Fabiana Juraski</div>
+
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M9 1 L10.5 7 L16 7 L11.5 10.5 L13 16.5 L9 13 L5 16.5 L6.5 10.5 L2 7 L7.5 7 Z" fill="rgba(201,147,74,.5)"/>
+      </svg>
+      <div class="hero-divider-line right"></div>
+    </div>
+
     <p class="hero-desc">
       Um verão que deveria ser esquecido. Uma promessa que mudaria tudo. 
       Entre memórias e novos começos, dois corações descobrem que alguns laços 
       são fortes demais para serem apagados pelo tempo.
     </p>
+
     <div class="hero-tags">
       <span class="tag">Romance Contemporâneo</span>
       <span class="tag">Second Chance</span>
       <span class="tag">Verão</span>
       <span class="tag">Emotional</span>
     </div>
+
     <div class="hero-cta">
       <a class="btn-primary" href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
-        📖 Comprar na Amazon
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Comprar na Amazon
       </a>
       <button class="btn-outline">Saiba Mais</button>
     </div>
   </div>
 </section>
 
-<!-- DESTAQUES -->
-<section>
-  <div class="section-header">
-    <h2>
-      <span class="arrows">❮❮❮</span>
-      DESTAQUES
-      <span class="arrows">❯❯❯</span>
-    </h2>
+<!-- ── DESTAQUES ─────────────────────────────────── -->
+<section style="background: var(--cream);">
+  <div class="section-head">
+    <div class="section-eyebrow">Catálogo</div>
+    <h2 class="section-title">Livros & <em>Lançamentos</em></h2>
+    <!-- Ornament SVG -->
+    <svg class="section-ornament" width="140" height="20" viewBox="0 0 140 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="10" x2="50" y2="10" stroke="url(#gl)" stroke-width="0.8"/>
+      <circle cx="70" cy="10" r="3" fill="#c9934a" opacity=".5"/>
+      <circle cx="60" cy="10" r="1.5" fill="#c9934a" opacity=".3"/>
+      <circle cx="80" cy="10" r="1.5" fill="#c9934a" opacity=".3"/>
+      <line x1="90" y1="10" x2="140" y2="10" stroke="url(#gr)" stroke-width="0.8"/>
+      <defs>
+        <linearGradient id="gl" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#c9934a" stop-opacity="0"/><stop offset="100%" stop-color="#c9934a" stop-opacity=".5"/></linearGradient>
+        <linearGradient id="gr" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#c9934a" stop-opacity=".5"/><stop offset="100%" stop-color="#c9934a" stop-opacity="0"/></linearGradient>
+      </defs>
+    </svg>
   </div>
+
   <div class="container">
     <div class="book-grid">
 
-      <!-- Card 1 - Featured book -->
+      <!-- Card 1 -->
       <div class="book-card">
-        <img src="a_ultima.jpg" alt="A Última Promessa do Verão" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
-        <span class="amazon-badge">Amazon</span>
+        <div class="book-img-wrap">
+          <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/a%20ultima.jpg" alt="A Última Promessa do Verão" />
+          <span class="badge-pill badge-amazon">Amazon</span>
+        </div>
         <div class="book-info">
-          <div class="book-genre">Romance Contemporâneo • Second Chance</div>
+          <div class="book-genre">Romance Contemporâneo · Second Chance</div>
           <div class="book-name">A Última Promessa do Verão</div>
           <div class="book-price">R$ 9,90</div>
           <div class="book-installment">eBook Kindle disponível</div>
-          <a class="book-btn" href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">Comprar na Amazon →</a>
+          <a class="book-btn" href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Comprar na Amazon
+          </a>
         </div>
       </div>
 
       <!-- Card 2 - Em breve -->
       <div class="book-card">
-        <div class="book-cover v2" style="flex-direction:column; gap:10px;">
-          <span style="font-size:36px">🌹</span>
-          <div>Próximo<br>Lançamento</div>
-          <div style="font-family:'Dancing Script',cursive; font-size:14px; color:#ffd4e0;">Em breve…</div>
+        <div class="book-img-wrap">
+          <div class="book-placeholder v2">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <path d="M24 8 C24 8 14 18 14 28 C14 34 18.5 40 24 40 C29.5 40 34 34 34 28 C34 18 24 8 24 8Z" fill="rgba(255,255,255,0.15)"/>
+              <path d="M20 22 C20 22 12 26 12 33" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="book-placeholder-text">Próximo<br>Lançamento</div>
+            <div class="book-placeholder-script">Em breve…</div>
+          </div>
+          <span class="badge-pill badge-soon">Em Breve</span>
         </div>
         <div class="book-info">
-          <div class="book-genre">Romance • Em breve</div>
+          <div class="book-genre">Romance · Em breve</div>
           <div class="book-name">Título a Revelar</div>
-          <div class="book-price" style="color: var(--muted); font-size:14px;">Em breve</div>
-          <div class="book-installment">Cadastre-se para ser avisada primeiro</div>
-          <button class="book-btn" style="background:var(--muted);" onclick="document.querySelector('.newsletter-form input').focus()">Quero ser avisada ♡</button>
+          <div class="book-price" style="color: var(--muted); font-size:15px;">Aguardando…</div>
+          <div class="book-installment">Seja a primeira a saber</div>
+          <button class="book-btn muted" onclick="document.querySelector('.newsletter-form input').focus(); document.querySelector('.newsletter').scrollIntoView({behavior:'smooth'})">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Quero ser avisada
+          </button>
         </div>
       </div>
 
       <!-- Card 3 - Em breve -->
       <div class="book-card">
-        <div class="book-cover v3" style="flex-direction:column; gap:10px;">
-          <span style="font-size:36px">🌙</span>
-          <div>Próximo<br>Lançamento</div>
-          <div style="font-family:'Dancing Script',cursive; font-size:14px; color:#ffd4e0;">Em breve…</div>
+        <div class="book-img-wrap">
+          <div class="book-placeholder v3">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="12" r="5" fill="rgba(255,255,255,.2)"/>
+              <path d="M24 18 L22 30 L26 30 Z" fill="rgba(255,255,255,.12)"/>
+              <circle cx="14" cy="32" r="3" fill="rgba(255,255,255,.12)"/>
+              <circle cx="34" cy="32" r="3" fill="rgba(255,255,255,.12)"/>
+            </svg>
+            <div class="book-placeholder-text">Próximo<br>Lançamento</div>
+            <div class="book-placeholder-script">Em breve…</div>
+          </div>
+          <span class="badge-pill badge-soon">Em Breve</span>
         </div>
         <div class="book-info">
-          <div class="book-genre">Romance • Em breve</div>
+          <div class="book-genre">Romance · Em breve</div>
           <div class="book-name">Título a Revelar</div>
-          <div class="book-price" style="color: var(--muted); font-size:14px;">Em breve</div>
-          <div class="book-installment">Cadastre-se para ser avisada primeiro</div>
-          <button class="book-btn" style="background:var(--muted);" onclick="document.querySelector('.newsletter-form input').focus()">Quero ser avisada ♡</button>
+          <div class="book-price" style="color: var(--muted); font-size:15px;">Aguardando…</div>
+          <div class="book-installment">Seja a primeira a saber</div>
+          <button class="book-btn muted" onclick="document.querySelector('.newsletter-form input').focus(); document.querySelector('.newsletter').scrollIntoView({behavior:'smooth'})">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Quero ser avisada
+          </button>
         </div>
       </div>
 
@@ -686,81 +1278,155 @@
   </div>
 </section>
 
-<!-- AUTHOR BANNER -->
-<section class="author-banner">
+<!-- ── QUOTE STRIP ───────────────────────────────── -->
+<div class="quote-strip">
+  <p class="quote-text">"Algumas promessas o tempo não é capaz de apagar."</p>
+  <div class="quote-source">— A Última Promessa do Verão</div>
+</div>
+
+<!-- ── AUTHOR ─────────────────────────────────────── -->
+<section class="author-section">
   <div class="author-photo-wrap">
-    <img src="autora-perfil.png" alt="Fabiana Juraski" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />
+    <div class="author-photo-frame">
+      <div class="author-photo-inner">
+        <img src="https://raw.githubusercontent.com/Fabianaju/fabijuraski/main/perfil" alt="Fabiana Juraski" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />
+      </div>
+    </div>
   </div>
+
   <div class="author-text">
-    <div class="subtitle">Conheça a Autora</div>
-    <h2>Fabiana Juraski</h2>
-    <p>
-      Escritora apaixonada por histórias de amor que tocam a alma. 
-      Acredita que cada romance tem o poder de nos fazer sentir menos sozinhos 
-      e mais esperançosos. Em seus livros, você vai encontrar personagens 
+    <div class="author-eyebrow">Conheça a Autora</div>
+    <div class="author-name">Fabiana Juraski</div>
+    <div class="author-title-line"></div>
+    <p class="author-desc">
+      Escritora apaixonada por histórias de amor que tocam a alma.
+      Acredita que cada romance tem o poder de nos fazer sentir menos sozinhos
+      e mais esperançosos. Em seus livros, você encontrará personagens
       reais, emoções genuínas e aquele frio na barriga que só um bom romance proporciona.
       <br><br>
-      Seu debut, <em style="color:#f5a7b8">A Última Promessa do Verão</em>, 
-      já encantou leitoras em todo o Brasil com sua história envolvente de 
+      Seu debut, <em>A Última Promessa do Verão</em>,
+      já encantou leitoras em todo o Brasil com sua história envolvente de
       segundas chances e amor verdadeiro.
     </p>
-    <div class="footer-social" style="margin-top:20px;">
-      <div class="social-icon">📸</div>
-      <div class="social-icon">💬</div>
-      <div class="social-icon">📘</div>
+    <div class="social-row">
+      <!-- Instagram -->
+      <a class="social-link" href="#" title="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      </a>
+      <!-- TikTok -->
+      <a class="social-link" href="#" title="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+      </a>
+      <!-- Facebook -->
+      <a class="social-link" href="https://www.facebook.com/profile.php?id=61591213451069" target="_blank" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <!-- Twitter/X -->
+      <a class="social-link" href="#" title="Twitter">
+        <svg viewBox="0 0 24 24"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- ── TESTIMONIALS ───────────────────────────────── -->
 <section class="testimonials-section">
-  <div class="section-header">
-    <h2>
-      <span class="arrows">❮❮❮</span>
-      O QUE AS LEITORAS DIZEM
-      <span class="arrows">❯❯❯</span>
-    </h2>
+  <div class="section-head">
+    <div class="section-eyebrow">Depoimentos</div>
+    <h2 class="section-title">O que as <em>Leitoras</em> dizem</h2>
+    <svg class="section-ornament" width="140" height="20" viewBox="0 0 140 20" fill="none">
+      <line x1="0" y1="10" x2="50" y2="10" stroke="url(#gl2)" stroke-width="0.8"/>
+      <circle cx="70" cy="10" r="3" fill="#c9934a" opacity=".4"/>
+      <circle cx="60" cy="10" r="1.5" fill="#c9934a" opacity=".25"/>
+      <circle cx="80" cy="10" r="1.5" fill="#c9934a" opacity=".25"/>
+      <line x1="90" y1="10" x2="140" y2="10" stroke="url(#gr2)" stroke-width="0.8"/>
+      <defs>
+        <linearGradient id="gl2" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#c9934a" stop-opacity="0"/><stop offset="100%" stop-color="#c9934a" stop-opacity=".4"/></linearGradient>
+        <linearGradient id="gr2" x1="0" y1="0" x2="50" y2="0"><stop offset="0%" stop-color="#c9934a" stop-opacity=".4"/><stop offset="100%" stop-color="#c9934a" stop-opacity="0"/></linearGradient>
+      </defs>
+    </svg>
   </div>
+
   <div class="testimonials-grid">
     <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p>"Li de uma vez só! A Última Promessa do Verão me fez chorar, sorrir e suspirar. Fabiana tem um talento incrível para criar personagens que a gente carrega no coração."</p>
-      <div class="testimonial-author">— Ana Luíza M. ✓ Leitora verificada</div>
+      <div class="stars">
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+      </div>
+      <div class="testimonial-divider"></div>
+      <p class="testimonial-text">Li de uma vez só! A Última Promessa do Verão me fez chorar, sorrir e suspirar. Fabiana tem um talento incrível para criar personagens que a gente carrega no coração.</p>
+      <div class="testimonial-author">— Ana Luíza M. · Leitora verificada</div>
     </div>
     <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p>"Que livro gostoso de ler! A escrita da Fabiana é fluida e envolvente. Me senti dentro da história desde a primeira página. Esperando ansiosamente pelo próximo!"</p>
-      <div class="testimonial-author">— Camila R. ✓ Leitora verificada</div>
+      <div class="stars">
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+      </div>
+      <div class="testimonial-divider"></div>
+      <p class="testimonial-text">Que livro gostoso de ler! A escrita da Fabiana é fluida e envolvente. Me senti dentro da história desde a primeira página. Esperando ansiosamente pelo próximo!</p>
+      <div class="testimonial-author">— Camila R. · Leitora verificada</div>
     </div>
     <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p>"Indico de olhos fechados! É exatamente o tipo de romance que me faz lembrar por que amo ler. A história de segunda chance é perfeita, cheia de tensão e emoção."</p>
-      <div class="testimonial-author">— Juliana F. ✓ Leitora verificada</div>
+      <div class="stars">
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9934a"/></svg>
+      </div>
+      <div class="testimonial-divider"></div>
+      <p class="testimonial-text">Indico de olhos fechados! É exatamente o tipo de romance que me faz lembrar por que amo ler. A história de segunda chance é perfeita, cheia de tensão e emoção.</p>
+      <div class="testimonial-author">— Juliana F. · Leitora verificada</div>
     </div>
   </div>
 </section>
 
-<!-- NEWSLETTER -->
+<!-- ── NEWSLETTER ─────────────────────────────────── -->
 <section class="newsletter">
-  <h3>Fique por dentro dos lançamentos 🌸</h3>
-  <p>Cadastre-se e seja a primeira a saber das novidades, lançamentos e promoções exclusivas.</p>
-  <div class="newsletter-form">
-    <input type="email" placeholder="Seu melhor e-mail…" />
-    <button>Quero participar →</button>
+  <div class="newsletter-content">
+    <!-- Floral SVG icon -->
+    <svg class="newsletter-icon" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="25" cy="25" r="5" fill="rgba(201,147,74,0.5)"/>
+      <ellipse cx="25" cy="13" rx="5" ry="9" fill="rgba(201,147,74,0.25)"/>
+      <ellipse cx="25" cy="37" rx="5" ry="9" fill="rgba(201,147,74,0.2)"/>
+      <ellipse cx="13" cy="25" rx="9" ry="5" fill="rgba(201,147,74,0.2)"/>
+      <ellipse cx="37" cy="25" rx="9" ry="5" fill="rgba(201,147,74,0.15)"/>
+      <ellipse cx="17" cy="17" rx="5" ry="9" fill="rgba(232,196,204,0.2)" transform="rotate(45 17 17)"/>
+      <ellipse cx="33" cy="33" rx="5" ry="9" fill="rgba(232,196,204,0.2)" transform="rotate(45 33 33)"/>
+      <ellipse cx="33" cy="17" rx="5" ry="9" fill="rgba(232,196,204,0.2)" transform="rotate(-45 33 17)"/>
+      <ellipse cx="17" cy="33" rx="5" ry="9" fill="rgba(232,196,204,0.2)" transform="rotate(-45 17 33)"/>
+    </svg>
+    <h3>Fique por dentro dos Lançamentos</h3>
+    <p>Cadastre-se e seja a primeira a saber das novidades, lançamentos e promoções exclusivas</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Seu melhor e-mail…" />
+      <button>Participar</button>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ─────────────────────────────────────── -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="logo">Fabiana Juraski</div>
+      <div class="footer-logo">Fabiana Juraski</div>
       <p>Escritora de romances contemporâneos apaixonantes. Histórias de amor que ficam no coração. Todos os direitos reservados.</p>
-      <div class="footer-social">
-        <div class="social-icon">📸</div>
-        <div class="social-icon">💬</div>
-        <div class="social-icon">📘</div>
-        <div class="social-icon">🐦</div>
+      <div class="social-row" style="margin-top:20px;">
+        <a class="social-link" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1); color:rgba(232,196,204,.5);" href="#">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a class="social-link" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1); color:rgba(232,196,204,.5);" href="#">
+          <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a>
+        <a class="social-link" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1); color:rgba(232,196,204,.5);" href="#">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
       </div>
     </div>
     <div class="footer-col">
@@ -782,39 +1448,177 @@
     </div>
   </div>
   <div class="footer-bottom">
-    © 2026 Fabiana Juraski. Todos os direitos reservados. | Site criado com ♡ para as leitoras
+    © 2026 Fabiana Juraski. Todos os direitos reservados. &nbsp;·&nbsp; Feito com <span class="footer-heart">♡</span> para as leitoras
   </div>
 </footer>
 
 <script>
-  // Newsletter submit
-  document.querySelector('.newsletter-form button').addEventListener('click', function() {
-    const input = document.querySelector('.newsletter-form input');
-    if (input.value && input.value.includes('@')) {
-      input.value = '';
-      input.placeholder = '✓ Cadastro realizado! Obrigada ♡';
-      this.textContent = 'Cadastrada!';
-      this.style.background = '#4caf82';
-      setTimeout(() => {
-        input.placeholder = 'Seu melhor e-mail…';
-        this.textContent = 'Quero participar →';
-        this.style.background = '';
-      }, 3500);
-    } else {
-      input.style.outline = '2px solid #c4546a';
-      input.placeholder = 'Digite um e-mail válido…';
-      setTimeout(() => { input.style.outline = ''; input.placeholder = 'Seu melhor e-mail…'; }, 2000);
-    }
-  });
+/* ── PARTICLE SYSTEM ── */
+(function() {
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
 
-  // Smooth scroll para newsletter ao clicar em "Quero ser avisada"
-  document.querySelectorAll('.book-btn').forEach(btn => {
-    if (btn.getAttribute('onclick')) {
-      btn.addEventListener('click', function() {
-        document.querySelector('.newsletter').scrollIntoView({ behavior: 'smooth' });
-      });
+  const COLORS = [
+    'rgba(201,147,74,', // gold
+    'rgba(232,196,204,', // petal
+    'rgba(155,48,80,',  // burgundy light
+  ];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  function createParticle() {
+    const type = Math.random();
+    return {
+      x: rand(0, W),
+      y: rand(0, H),
+      r: rand(1, type < .3 ? 5 : 2.5),
+      vx: rand(-.15, .15),
+      vy: rand(-.3, -.06),
+      alpha: rand(.1, .5),
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      // petal shape for some
+      isPetal: type < .25,
+      rot: rand(0, Math.PI * 2),
+      rotV: rand(-.008, .008),
+      life: 1,
+      decay: rand(.0005, .002),
+    };
+  }
+
+  for (let i = 0; i < 80; i++) particles.push(createParticle());
+
+  function drawPetal(ctx, x, y, r, rot, alpha, color) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rot);
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    ctx.ellipse(0, -r * 2, r * .7, r * 2, 0, 0, Math.PI * 2);
+    ctx.fillStyle = color + alpha + ')';
+    ctx.fill();
+    ctx.rotate(Math.PI * .6);
+    ctx.beginPath();
+    ctx.ellipse(0, -r * 2, r * .7, r * 2, 0, 0, Math.PI * 2);
+    ctx.fillStyle = color + (alpha * .7) + ')';
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+
+    particles.forEach((p, i) => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.rotV;
+      p.life -= p.decay;
+
+      const a = p.alpha * p.life;
+
+      if (p.isPetal) {
+        drawPetal(ctx, p.x, p.y, p.r * 1.5, p.rot, a * .6, p.color);
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + a + ')';
+        ctx.fill();
+      }
+
+      if (p.life <= 0 || p.y < -20) {
+        particles[i] = createParticle();
+        particles[i].y = H + 10;
+      }
+    });
+
+    requestAnimationFrame(loop);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  loop();
+})();
+
+/* ── NEWSLETTER ── */
+document.querySelector('.newsletter-form button').addEventListener('click', function() {
+  const input = document.querySelector('.newsletter-form input');
+  if (input.value && input.value.includes('@')) {
+    const btn = this;
+    input.value = '';
+    input.placeholder = '✓ Cadastro realizado! Obrigada ♡';
+    btn.textContent = 'Cadastrada!';
+    btn.style.background = 'linear-gradient(135deg, #4caf82, #2e7d5a)';
+    setTimeout(() => {
+      input.placeholder = 'Seu melhor e-mail…';
+      btn.textContent = 'Participar';
+      btn.style.background = '';
+    }, 3500);
+  } else {
+    input.style.outline = '2px solid rgba(201,147,74,.6)';
+    input.placeholder = 'Digite um e-mail válido…';
+    setTimeout(() => { input.style.outline = ''; input.placeholder = 'Seu melhor e-mail…'; }, 2000);
+  }
+});
+
+/* ── SCROLL REVEAL ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
     }
   });
-</script>
+}, { threshold: .12 });
+
+document.querySelectorAll('.book-card, .testimonial-card, .author-text, .author-photo-wrap').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(28px)';
+  el.style.transition = 'opacity .6s ease, transform .6s ease';
+  observer.observe(el);
+});
+<!-- ── LOGIN MODAL ─────────────────────────────────── -->
+<div class="modal-overlay" id="loginModal" onclick="if(event.target===this) this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('loginModal').classList.remove('open')">×</button>
+    <div class="modal-logo">Fabiana Juraski</div>
+    <div class="modal-sub">Acesse sua conta</div>
+
+    <!-- Google Sign In -->
+    <button class="btn-google" onclick="alert('Integração Google OAuth — configure seu Client ID para ativar.')">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.7 2.5 30.2 0 24 0 14.8 0 6.9 5.4 3 13.3l7.8 6.1C12.7 13.2 17.9 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17z"/><path fill="#FBBC05" d="M10.8 28.6A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.1.7-4.6L2.4 13.3A24 24 0 0 0 0 24c0 3.8.9 7.4 2.4 10.7l8.4-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.5-5.8c-2 1.4-4.6 2.3-7.7 2.3-6.1 0-11.3-4.1-13.2-9.6l-8.2 6.3C6.9 42.6 14.8 48 24 48z"/></svg>
+      Continuar com o Google
+    </button>
+
+    <div class="modal-divider">ou</div>
+
+    <div class="modal-field">
+      <label>E-mail</label>
+      <input type="email" placeholder="seu@email.com" id="loginEmail" />
+    </div>
+    <div class="modal-field">
+      <label>Senha</label>
+      <input type="password" placeholder="••••••••" id="loginPass" />
+    </div>
+
+    <button class="btn-modal-submit" onclick="
+      const e = document.getElementById('loginEmail').value;
+      const p = document.getElementById('loginPass').value;
+      if(e && p) { alert('Login realizado com sucesso! ♡'); document.getElementById('loginModal').classList.remove('open'); }
+      else { alert('Por favor, preencha e-mail e senha.'); }
+    ">Entrar</button>
+
+    <p class="modal-footer">
+      Não tem conta? <a onclick="document.getElementById('loginModal').classList.remove('open')">Cadastre-se grátis</a>
+      &nbsp;·&nbsp;
+      <a href="#">Esqueci minha senha</a>
+    </p>
+  </div>
+</div>
+
 </body>
 </html>
