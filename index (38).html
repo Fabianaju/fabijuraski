@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fabiana Juraski – Autora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Raleway:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────── */
+    :root {
+      --rose:     #c4546a;
+      --rose-dk:  #9b3550;
+      --blush:    #f5dde5;
+      --cream:    #fdf7f9;
+      --ink:      #1e1118;
+      --muted:    #7a5c66;
+      --gold:     #c9934a;
+      --white:    #ffffff;
+      --ff-title: 'Playfair Display', serif;
+      --ff-hand:  'Dancing Script', cursive;
+      --ff-body:  'Raleway', sans-serif;
+      --radius:   8px;
+      --shadow:   0 4px 24px rgba(196,84,106,.15);
+    }
+
+    /* ─── RESET ──────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--ff-body); background: var(--cream); color: var(--ink); }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── TOP BAR ────────────────────────────── */
+    .topbar {
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      border-bottom: 1px solid #f0dce3;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .topbar-welcome { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .topbar-welcome a { color: var(--rose); font-weight: 600; }
+    .logo {
+      font-family: var(--ff-hand);
+      font-size: 32px;
+      color: var(--rose-dk);
+      letter-spacing: 1px;
+    }
+    .topbar-right { display: flex; align-items: center; gap: 16px; }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #e0c8d0;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .search-bar input {
+      border: none; outline: none; padding: 6px 14px; font-size: 13px; width: 180px; font-family: var(--ff-body);
+    }
+    .search-bar button {
+      background: var(--rose); border: none; padding: 8px 14px; cursor: pointer; color: #fff; font-size: 14px;
+    }
+    .cart-btn {
+      background: var(--rose); color: #fff; border: none; border-radius: var(--radius);
+      padding: 8px 16px; font-size: 12px; font-family: var(--ff-body); cursor: pointer; font-weight: 600;
+    }
+    .user-icon { font-size: 22px; color: var(--muted); cursor: pointer; }
+
+    /* ─── NAV ────────────────────────────────── */
+    nav {
+      background: var(--rose);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+    nav a {
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 13px 28px;
+      text-transform: uppercase;
+      transition: background .2s;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    nav a:first-child { border-left: 1px solid rgba(255,255,255,.15); }
+    nav a:hover, nav a.active { background: var(--rose-dk); }
+
+    /* ─── HERO ───────────────────────────────── */
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 480px;
+      overflow: hidden;
+      background: url('autora-banner.png') center/cover no-repeat;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(10,5,8,.6) 0%, rgba(10,5,8,.3) 40%, rgba(10,5,8,.7) 100%);
+      z-index: 0;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-left {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .book-mockup-link { display: block; }
+    .book-cover-img {
+      width: 240px;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 4px 14px 14px 4px;
+      box-shadow: -8px 8px 40px rgba(0,0,0,.7), 8px 0 20px rgba(196,84,106,.3);
+      animation: floatBook 3s ease-in-out infinite;
+      transition: transform .2s;
+    }
+    .book-mockup-link:hover .book-cover-img { transform: scale(1.03) translateY(-6px); }
+      width: 240px;
+      height: 340px;
+      background: linear-gradient(160deg, #f5a7b8 0%, #c4546a 40%, #7a1f3d 100%);
+      border-radius: 4px 14px 14px 4px;
+      box-shadow: -8px 8px 40px rgba(0,0,0,.6), 8px 0 20px rgba(196,84,106,.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      animation: floatBook 3s ease-in-out infinite;
+    }
+    @keyframes floatBook {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    .book-mockup::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 18px;
+      background: linear-gradient(90deg, #3a0a20, #7a1f3d);
+      border-radius: 4px 0 0 4px;
+    }
+    .book-title-mock {
+      font-family: var(--ff-title);
+      font-size: 20px;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 8px rgba(0,0,0,.5);
+    }
+    .book-author-mock {
+      font-family: var(--ff-hand);
+      font-size: 16px;
+      color: #ffd4e0;
+    }
+    .book-deco {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 50px 50px 50px 30px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+    .hero-title {
+      font-family: var(--ff-title);
+      font-size: 42px;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .hero-title em { color: #f5a7b8; font-style: italic; }
+    .hero-author {
+      font-family: var(--ff-hand);
+      font-size: 22px;
+      color: #f5a7b8;
+      margin-bottom: 20px;
+    }
+    .hero-desc {
+      color: #e8c8d4;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 380px;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .tag {
+      background: rgba(255,255,255,.12);
+      color: #f5dde5;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      padding: 4px 12px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--rose);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      padding: 13px 28px;
+      font-family: var(--ff-body);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      letter-spacing: .5px;
+      transition: background .2s, transform .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover { background: var(--rose-dk); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,.4);
+      border-radius: var(--radius);
+      padding: 11px 24px;
+      font-family: var(--ff-body);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+
+    /* ─── SECTION HEADER ─────────────────────── */
+    .section-header {
+      text-align: center;
+      padding: 56px 20px 36px;
+    }
+    .section-header h2 {
+      font-family: var(--ff-title);
+      font-size: 32px;
+      color: var(--rose-dk);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .arrows { color: var(--rose); font-size: 18px; letter-spacing: -4px; }
+
+    /* ─── BOOK GRID ──────────────────────────── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      padding-bottom: 56px;
+    }
+    .book-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(196,84,106,.1);
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+    }
+    .book-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .book-cover {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background: linear-gradient(160deg, #f5a7b8 0%, #c4546a 50%, #7a1f3d 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-title);
+      font-size: 18px;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      line-height: 1.4;
+      min-height: 260px;
+    }
+    .book-cover.v2 { background: linear-gradient(160deg, #dca5c0 0%, #9b3550 50%, #3a0a20 100%); }
+    .book-cover.v3 { background: linear-gradient(160deg, #f0c0d0 0%, #c4546a 30%, #2c0f1e 100%); }
+    .free-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--rose);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: .5px;
+    }
+    .amazon-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .book-info { padding: 16px; }
+    .book-name {
+      font-family: var(--ff-title);
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .book-genre {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 500;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .book-price {
+      color: var(--rose);
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+    .book-price-old {
+      color: var(--muted);
+      font-size: 12px;
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+    .book-installment { color: var(--muted); font-size: 11px; }
+    .book-btn {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      background: var(--rose);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 9px;
+      font-family: var(--ff-body);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      text-align: center;
+      transition: background .2s;
+    }
+    .book-btn:hover { background: var(--rose-dk); }
+
+    /* ─── AUTHOR BANNER ──────────────────────── */
+    .author-banner {
+      background: url('autora-banner.png') center/cover no-repeat;
+      position: relative;
+      padding: 64px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .author-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(30,8,20,.82) 0%, rgba(30,8,20,.65) 100%);
+    }
+    .author-banner > * { position: relative; z-index: 1; }
+    .author-photo-wrap {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 4px solid var(--rose);
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--blush), var(--rose));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 8px rgba(196,84,106,.15);
+    }
+    .author-text { max-width: 520px; color: #e8c8d4; }
+    .author-text h2 {
+      font-family: var(--ff-hand);
+      font-size: 38px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .author-text .subtitle {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .author-text p { font-size: 14px; line-height: 1.8; color: #d4a8b8; }
+
+    /* ─── NEWSLETTER ─────────────────────────── */
+    .newsletter {
+      background: var(--blush);
+      padding: 48px 20px;
+      text-align: center;
+    }
+    .newsletter h3 {
+      font-family: var(--ff-title);
+      font-size: 26px;
+      color: var(--rose-dk);
+      margin-bottom: 8px;
+    }
+    .newsletter p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+    .newsletter-form {
+      display: flex;
+      max-width: 440px;
+      margin: 0 auto;
+      gap: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .newsletter-form input {
+      flex: 1;
+      border: none;
+      padding: 14px 20px;
+      font-size: 14px;
+      font-family: var(--ff-body);
+      outline: none;
+    }
+    .newsletter-form button {
+      background: var(--rose);
+      color: #fff;
+      border: none;
+      padding: 14px 24px;
+      font-family: var(--ff-body);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .newsletter-form button:hover { background: var(--rose-dk); }
+
+    /* ─── TESTIMONIALS ───────────────────────── */
+    .testimonials-section { padding: 56px 20px; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(196,84,106,.08);
+      border-top: 3px solid var(--rose);
+    }
+    .stars { color: var(--gold); font-size: 16px; margin-bottom: 10px; letter-spacing: 2px; }
+    .testimonial-card p { font-size: 14px; color: var(--muted); line-height: 1.7; font-style: italic; margin-bottom: 14px; }
+    .testimonial-author { font-weight: 700; font-size: 13px; color: var(--rose-dk); }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: #d4a8b8;
+      padding: 48px 40px 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto 32px;
+    }
+    .footer-brand .logo { color: #f5a7b8; font-size: 28px; margin-bottom: 12px; }
+    .footer-brand p { font-size: 13px; line-height: 1.7; color: #a87a8a; }
+    .footer-col h4 {
+      font-family: var(--ff-title);
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 14px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { font-size: 13px; color: #a87a8a; transition: color .2s; }
+    .footer-col ul li a:hover { color: #f5a7b8; }
+    .footer-social { display: flex; gap: 12px; margin-top: 16px; }
+    .social-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      color: #f5a7b8;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .social-icon:hover { background: var(--rose); }
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 20px;
+      font-size: 12px;
+      color: #7a5c66;
+    }
+
+    /* ─── PROMO STRIP ────────────────────────── */
+    .promo-strip {
+      background: var(--gold);
+      color: #fff;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px;
+      letter-spacing: .5px;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 40px 20px 0; }
+      .hero-right { padding: 24px 24px 40px; }
+      .book-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { flex-wrap: wrap; justify-content: flex-start; }
+      nav a { padding: 10px 14px; font-size: 11px; }
+      .book-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .hero-title { font-size: 30px; }
+      .topbar { padding: 10px 16px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">🌸 Novo lançamento disponível! "A Última Promessa do Verão" – romance de verão que vai te prender do início ao fim 📖</div>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-welcome">
+    Olá, seja bem-vinda!<br>
+    <a href="#">Faça seu Login</a> ou <a href="#">Cadastre-se</a>
+  </div>
+  <div class="logo">Fabiana Juraski</div>
+  <div class="topbar-right">
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar no site…" />
+      <button>🔍</button>
+    </div>
+    <span class="user-icon">👤</span>
+    <button class="cart-btn">🛒 Carrinho<br><small>R$ 0,00</small></button>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="active">Livros</a>
+  <a href="#">Gêneros</a>
+  <a href="#">Sobre a Autora</a>
+  <a href="#">Séries</a>
+  <a href="#">Resenhas</a>
+  <a href="#">Contato</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank" class="book-mockup-link">
+      <img src="a_ultima.jpg" alt="A Última Promessa do Verão – Fabiana Juraski" class="book-cover-img" />
+    </a>
+  </div>
+  <div class="hero-right">
+    <span class="hero-badge">✨ Novo Lançamento</span>
+    <h1 class="hero-title">A <em>Última Promessa</em><br>do Verão</h1>
+    <div class="hero-author">por Fabiana Juraski</div>
+    <p class="hero-desc">
+      Um verão que deveria ser esquecido. Uma promessa que mudaria tudo. 
+      Entre memórias e novos começos, dois corações descobrem que alguns laços 
+      são fortes demais para serem apagados pelo tempo.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Romance Contemporâneo</span>
+      <span class="tag">Second Chance</span>
+      <span class="tag">Verão</span>
+      <span class="tag">Emotional</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn-primary" href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">
+        📖 Comprar na Amazon
+      </a>
+      <button class="btn-outline">Saiba Mais</button>
+    </div>
+  </div>
+</section>
+
+<!-- DESTAQUES -->
+<section>
+  <div class="section-header">
+    <h2>
+      <span class="arrows">❮❮❮</span>
+      DESTAQUES
+      <span class="arrows">❯❯❯</span>
+    </h2>
+  </div>
+  <div class="container">
+    <div class="book-grid">
+
+      <!-- Card 1 - Featured book -->
+      <div class="book-card">
+        <img src="a_ultima.jpg" alt="A Última Promessa do Verão" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
+        <span class="amazon-badge">Amazon</span>
+        <div class="book-info">
+          <div class="book-genre">Romance Contemporâneo • Second Chance</div>
+          <div class="book-name">A Última Promessa do Verão</div>
+          <div class="book-price">R$ 9,90</div>
+          <div class="book-installment">eBook Kindle disponível</div>
+          <a class="book-btn" href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">Comprar na Amazon →</a>
+        </div>
+      </div>
+
+      <!-- Card 2 - Em breve -->
+      <div class="book-card">
+        <div class="book-cover v2" style="flex-direction:column; gap:10px;">
+          <span style="font-size:36px">🌹</span>
+          <div>Próximo<br>Lançamento</div>
+          <div style="font-family:'Dancing Script',cursive; font-size:14px; color:#ffd4e0;">Em breve…</div>
+        </div>
+        <div class="book-info">
+          <div class="book-genre">Romance • Em breve</div>
+          <div class="book-name">Título a Revelar</div>
+          <div class="book-price" style="color: var(--muted); font-size:14px;">Em breve</div>
+          <div class="book-installment">Cadastre-se para ser avisada primeiro</div>
+          <button class="book-btn" style="background:var(--muted);" onclick="document.querySelector('.newsletter-form input').focus()">Quero ser avisada ♡</button>
+        </div>
+      </div>
+
+      <!-- Card 3 - Em breve -->
+      <div class="book-card">
+        <div class="book-cover v3" style="flex-direction:column; gap:10px;">
+          <span style="font-size:36px">🌙</span>
+          <div>Próximo<br>Lançamento</div>
+          <div style="font-family:'Dancing Script',cursive; font-size:14px; color:#ffd4e0;">Em breve…</div>
+        </div>
+        <div class="book-info">
+          <div class="book-genre">Romance • Em breve</div>
+          <div class="book-name">Título a Revelar</div>
+          <div class="book-price" style="color: var(--muted); font-size:14px;">Em breve</div>
+          <div class="book-installment">Cadastre-se para ser avisada primeiro</div>
+          <button class="book-btn" style="background:var(--muted);" onclick="document.querySelector('.newsletter-form input').focus()">Quero ser avisada ♡</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AUTHOR BANNER -->
+<section class="author-banner">
+  <div class="author-photo-wrap">
+    <img src="autora-perfil.png" alt="Fabiana Juraski" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />
+  </div>
+  <div class="author-text">
+    <div class="subtitle">Conheça a Autora</div>
+    <h2>Fabiana Juraski</h2>
+    <p>
+      Escritora apaixonada por histórias de amor que tocam a alma. 
+      Acredita que cada romance tem o poder de nos fazer sentir menos sozinhos 
+      e mais esperançosos. Em seus livros, você vai encontrar personagens 
+      reais, emoções genuínas e aquele frio na barriga que só um bom romance proporciona.
+      <br><br>
+      Seu debut, <em style="color:#f5a7b8">A Última Promessa do Verão</em>, 
+      já encantou leitoras em todo o Brasil com sua história envolvente de 
+      segundas chances e amor verdadeiro.
+    </p>
+    <div class="footer-social" style="margin-top:20px;">
+      <div class="social-icon">📸</div>
+      <div class="social-icon">💬</div>
+      <div class="social-icon">📘</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-header">
+    <h2>
+      <span class="arrows">❮❮❮</span>
+      O QUE AS LEITORAS DIZEM
+      <span class="arrows">❯❯❯</span>
+    </h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Li de uma vez só! A Última Promessa do Verão me fez chorar, sorrir e suspirar. Fabiana tem um talento incrível para criar personagens que a gente carrega no coração."</p>
+      <div class="testimonial-author">— Ana Luíza M. ✓ Leitora verificada</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Que livro gostoso de ler! A escrita da Fabiana é fluida e envolvente. Me senti dentro da história desde a primeira página. Esperando ansiosamente pelo próximo!"</p>
+      <div class="testimonial-author">— Camila R. ✓ Leitora verificada</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Indico de olhos fechados! É exatamente o tipo de romance que me faz lembrar por que amo ler. A história de segunda chance é perfeita, cheia de tensão e emoção."</p>
+      <div class="testimonial-author">— Juliana F. ✓ Leitora verificada</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h3>Fique por dentro dos lançamentos 🌸</h3>
+  <p>Cadastre-se e seja a primeira a saber das novidades, lançamentos e promoções exclusivas.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="Seu melhor e-mail…" />
+    <button>Quero participar →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Fabiana Juraski</div>
+      <p>Escritora de romances contemporâneos apaixonantes. Histórias de amor que ficam no coração. Todos os direitos reservados.</p>
+      <div class="footer-social">
+        <div class="social-icon">📸</div>
+        <div class="social-icon">💬</div>
+        <div class="social-icon">📘</div>
+        <div class="social-icon">🐦</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Livros</h4>
+      <ul>
+        <li><a href="#">A Última Promessa do Verão</a></li>
+        <li><a href="#">Próximos Lançamentos</a></li>
+        <li><a href="#">Todos os Títulos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Links</h4>
+      <ul>
+        <li><a href="https://www.amazon.com.br/s?k=fabiana+juraski&s=digital-text" target="_blank">Amazon Brasil</a></li>
+        <li><a href="#">Sobre a Autora</a></li>
+        <li><a href="#">Contato</a></li>
+        <li><a href="#">Política de Privacidade</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Fabiana Juraski. Todos os direitos reservados. | Site criado com ♡ para as leitoras
+  </div>
+</footer>
+
+<script>
+  // Newsletter submit
+  document.querySelector('.newsletter-form button').addEventListener('click', function() {
+    const input = document.querySelector('.newsletter-form input');
+    if (input.value && input.value.includes('@')) {
+      input.value = '';
+      input.placeholder = '✓ Cadastro realizado! Obrigada ♡';
+      this.textContent = 'Cadastrada!';
+      this.style.background = '#4caf82';
+      setTimeout(() => {
+        input.placeholder = 'Seu melhor e-mail…';
+        this.textContent = 'Quero participar →';
+        this.style.background = '';
+      }, 3500);
+    } else {
+      input.style.outline = '2px solid #c4546a';
+      input.placeholder = 'Digite um e-mail válido…';
+      setTimeout(() => { input.style.outline = ''; input.placeholder = 'Seu melhor e-mail…'; }, 2000);
+    }
+  });
+
+  // Smooth scroll para newsletter ao clicar em "Quero ser avisada"
+  document.querySelectorAll('.book-btn').forEach(btn => {
+    if (btn.getAttribute('onclick')) {
+      btn.addEventListener('click', function() {
+        document.querySelector('.newsletter').scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  });
+</script>
+</body>
+</html>
