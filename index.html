@@ -219,6 +219,62 @@
     nav a:hover, nav a.active { color: var(--gold-lt); }
     nav a:hover::after, nav a.active::after { left: 20%; right: 20%; }
 
+    /* ── HAMBURGER BUTTON ────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 38px; height: 38px;
+      background: transparent;
+      border: 1px solid rgba(201,147,74,.35);
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 0;
+      transition: background .2s;
+      flex-shrink: 0;
+    }
+    .hamburger:hover { background: rgba(201,147,74,.1); }
+    .hamburger span {
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--burgundy);
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease, width .3s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE NAV DRAWER ───────────────────── */
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      background: linear-gradient(160deg, var(--burg-dk), var(--burgundy));
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .4s cubic-bezier(.25,.8,.25,1);
+    }
+    .nav-drawer.open { max-height: 400px; }
+    .nav-drawer a {
+      color: rgba(255,255,255,.75);
+      font-family: var(--ff-body);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      padding: 16px 28px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(201,147,74,.1);
+      transition: background .2s, color .2s;
+    }
+    .nav-drawer a:last-child { border-bottom: none; }
+    .nav-drawer a:hover, .nav-drawer a.active {
+      color: var(--gold-lt);
+      background: rgba(255,255,255,.04);
+    }
+
     /* ── DIVIDER ORNAMENT ────────────────────── */
     .divider-ornament {
       text-align: center;
@@ -954,17 +1010,31 @@
       .testimonials-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .author-section { gap: 40px; }
+      /* Tablet + celular: esconde nav horizontal e ativa hamburguer */
+      nav { display: none; }
+      .nav-drawer { display: flex; }
+      .hamburger { display: flex; }
     }
     @media (max-width: 640px) {
-      .topbar { padding: 12px 20px; }
+      .topbar { padding: 12px 16px; }
       .topbar-welcome { display: none; }
-      nav a { padding: 12px 14px; font-size: 9px; letter-spacing: 1.5px; }
+      /* Esconde busca e ícone de conta — libera espaço pro hamburguer */
+      .search-bar { display: none; }
+      .icon-btn { display: none; }
+      /* Carrinho vira só ícone */
+      .cart-btn { padding: 9px 12px; font-size: 0; letter-spacing: 0; gap: 0; }
+      .cart-btn svg { width: 18px; height: 18px; }
       .hero-title { font-size: 34px; }
       .hero-title .script-word { font-size: 48px; }
       .book-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
       .section-title { font-size: 32px; }
       .footer-grid { grid-template-columns: 1fr; }
       .author-name { font-size: 44px; }
+    }
+    @media (max-width: 400px) {
+      .logo-title { font-size: 26px; }
+      .logo-sub { display: none; }
+      .cart-btn { display: none; }
     }
   </style>
 </head>
@@ -1004,6 +1074,11 @@
       <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       Minha Sacola
     </button>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
 
@@ -1016,6 +1091,16 @@
   <a href="#">Resenhas</a>
   <a href="#">Contato</a>
 </nav>
+
+<!-- ── NAV DRAWER MOBILE ─────────────────────────── -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#" class="active">Livros</a>
+  <a href="#">Gêneros</a>
+  <a href="#">Sobre a Autora</a>
+  <a href="#">Séries</a>
+  <a href="#">Resenhas</a>
+  <a href="#">Contato</a>
+</div>
 
 <!-- ── HERO CAROUSEL ──────────────────────────────── -->
 <section class="hero-carousel" id="heroCarousel">
@@ -1524,6 +1609,27 @@ document.querySelectorAll('.book-card, .testimonial-card, .author-text, .author-
   el.style.transition = 'opacity .6s ease, transform .6s ease';
   observer.observe(el);
 });
+/* ── HAMBURGER MENU ── */
+(function() {
+  const btn = document.getElementById('hamburgerBtn');
+  const drawer = document.getElementById('navDrawer');
+  if (!btn || !drawer) return;
+
+  btn.addEventListener('click', function() {
+    const isOpen = drawer.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Fecha o menu ao clicar em um link
+  drawer.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      drawer.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
 </script>
 
 <!-- ── LOGIN MODAL ─────────────────────────────────── -->
